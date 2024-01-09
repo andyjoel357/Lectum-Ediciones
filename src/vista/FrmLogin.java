@@ -81,18 +81,14 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 114, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -102,20 +98,26 @@ public class FrmLogin extends javax.swing.JFrame {
                             .addComponent(jLabel5)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(126, 126, 126)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel8)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel4)))
+                .addContainerGap(245, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(102, 102, 102))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jButton_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(83, 83, 83))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(11, 11, 11)
                 .addComponent(jLabel8)
-                .addGap(31, 31, 31)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -126,9 +128,9 @@ public class FrmLogin extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(jLabel7))
                     .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(28, 28, 28)
                 .addComponent(jButton_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addGap(71, 71, 71)
                 .addComponent(jLabel6)
                 .addContainerGap(62, Short.MAX_VALUE))
         );
@@ -142,15 +144,14 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(34, 34, 34))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)))
+                        .addGap(59, 59, 59)))
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -180,7 +181,27 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void jButton_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IniciarSesionActionPerformed
         //LLamar al método
-        this.Login();
+       if (!txt_usuario.getText().isEmpty() && !txt_password.getText().isEmpty()) {
+            Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
+            Usuario usuario = new Usuario(0, "NombreUsuario", "Contrasena", "Dirección", "Teléfono");
+            usuario.setNombre(txt_usuario.getText().trim());
+            usuario.setContrasena(String.copyValueOf(txt_password.getPassword()));
+
+            if (controlUsuario.loginUser(usuario)) {
+                System.out.println("Fronted-true: " + controlUsuario.loginUser(usuario));
+                JOptionPane.showMessageDialog(null, "Login Correcto");
+                //Solo si el usuario existe pido que la ventana de FrmMenu se visualice
+                //----------------------------------
+                FrmMenu menu = new FrmMenu();
+                menu.setVisible(true);
+                //----------------------------------
+            } else {
+                System.out.println("Fronted-false: " + controlUsuario.loginUser(usuario));
+                JOptionPane.showMessageDialog(null, "Usuario o clave incorrecto");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese sus credenciales");
+        }
     }//GEN-LAST:event_jButton_IniciarSesionActionPerformed
 
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
@@ -239,27 +260,4 @@ public class FrmLogin extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
         //Meetodo para log button
 
-    private void Login() {
-        if (!txt_usuario.getText().isEmpty() && !txt_password.getText().isEmpty()) {
-            Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
-            Usuario usuario = new Usuario(0, "NombreUsuario", "Contrasena", "Dirección", "Teléfono");
-            usuario.setNombre(txt_usuario.getText().trim());
-            usuario.setContrasena(String.copyValueOf(txt_password.getPassword()));
-
-            if (controlUsuario.loginUser(usuario)) {
-                System.out.println("Fronted-true: " + controlUsuario.loginUser(usuario));
-                JOptionPane.showMessageDialog(null, "Login Correcto");
-                //Solo si el usuario existe pido que la ventana de FrmMenu se visualice
-                //----------------------------------
-                FrmMenu menu = new FrmMenu();
-                menu.setVisible(true);
-                //----------------------------------
-            } else {
-                System.out.println("Fronted-false: " + controlUsuario.loginUser(usuario));
-                JOptionPane.showMessageDialog(null, "Usuario o clave incorrecto");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Ingrese sus credenciales");
-        }
-    }
 }

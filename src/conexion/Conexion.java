@@ -9,7 +9,8 @@ public class Conexion {
     //conexion de tipo local
     public static Connection conectar() {
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/lectum", "root", "admin");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/lectum", "root", "root");
+            //En el apartado password se debe poner la 
             return cn;
         } catch (SQLException e) {
             System.out.println("Error en la conexion local" + e);
