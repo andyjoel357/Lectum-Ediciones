@@ -7,7 +7,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
 import vista.InternalFrameInventario.InternalAgregarLibros;
 import vista.InternalFrameInventario.InternalVerInventario;
-
+import vista.InternalFrameNE.InternalNotasDeEntrega;
 public class FrmMenu extends javax.swing.JFrame {
 
     public static JDesktopPane jDesktopPane_menu;
@@ -182,7 +182,9 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemVerInvenActionPerformed
 
     private void jMenuItemAgregarEnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgregarEnActionPerformed
-
+       InternalNotasDeEntrega ver = new InternalNotasDeEntrega();
+       jDesktopPane_menu.add(ver);
+       ver.setVisible(true);
 
     }//GEN-LAST:event_jMenuItemAgregarEnActionPerformed
 
