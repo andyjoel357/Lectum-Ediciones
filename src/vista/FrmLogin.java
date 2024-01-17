@@ -58,6 +58,11 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 65));
 
         txt_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txt_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_usuarioActionPerformed(evt);
+            }
+        });
 
         txt_password.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txt_password.addActionListener(new java.awt.event.ActionListener() {
@@ -256,6 +261,10 @@ public class FrmLogin extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton_IniciarSesion2ActionPerformed
+
+    private void txt_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_usuarioActionPerformed
 
     /**
      * @param args the command line arguments

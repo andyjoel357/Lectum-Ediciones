@@ -5,6 +5,11 @@
 package vista;
 
 import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 
 /**
  *
@@ -106,10 +111,9 @@ public class AgregarUsuario extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(contraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                .addComponent(direccion)
-                                .addComponent(telefono)))
+                            .addComponent(contraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                            .addComponent(direccion)
+                            .addComponent(telefono))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -239,7 +243,9 @@ public class AgregarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, llene todos los campos","Advertencia",JOptionPane.WARNING_MESSAGE);
         
         
-        } 
+        } else {
+            JOptionPane.showMessageDialog(this, "Agregado correctamente","Exitoso",JOptionPane.INFORMATION_MESSAGE);
+        }
 
                 
         
