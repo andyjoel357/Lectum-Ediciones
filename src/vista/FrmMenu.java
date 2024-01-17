@@ -7,6 +7,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
 import vista.InternalFrameInventario.InternalAgregarLibros;
 import vista.InternalFrameInventario.InternalVerInventario;
+import vista.InternalFrameInventario.InternalVerUsuarios;
 import vista.InternalFrameNE.InternalNotasDeEntrega;
 public class FrmMenu extends javax.swing.JFrame {
 
@@ -42,6 +43,9 @@ public class FrmMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuInventario = new javax.swing.JMenu();
         jMenuItemVerInven = new javax.swing.JMenuItem();
@@ -54,6 +58,15 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenuItemAgregVe = new javax.swing.JMenuItem();
         jMenuAyuda = new javax.swing.JMenu();
         jMenuItemComoAyuda = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jCerrar = new javax.swing.JMenuItem();
+        jVerUsuarios = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
+
+        jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setForeground(new java.awt.Color(242, 242, 242));
@@ -158,13 +171,42 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuAyuda);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar-sesion.png"))); // NOI18N
+        jMenu1.setText("Salir");
+        jMenu1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 2, 24)); // NOI18N
+
+        jCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar-sesion.png"))); // NOI18N
+        jCerrar.setText("Cerrar Sección ");
+        jCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCerrarMouseClicked(evt);
+            }
+        });
+        jCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCerrarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jCerrar);
+
+        jVerUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png"))); // NOI18N
+        jVerUsuarios.setText("Ver Usuarios");
+        jVerUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jVerUsuariosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jVerUsuarios);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
+            .addGap(0, 1272, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,6 +255,42 @@ public class FrmMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItemAgregVeActionPerformed
 
+    private void jVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVerUsuariosActionPerformed
+        // TODO add your handling code here:
+        
+        
+           InternalVerUsuarios ver = new InternalVerUsuarios();
+       jDesktopPane_menu.add(ver);
+       ver.setVisible(true);
+
+        
+        
+    }//GEN-LAST:event_jVerUsuariosActionPerformed
+
+ 
+
+
+    
+    
+    private void jCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCerrarMouseClicked
+  
+    
+
+    }//GEN-LAST:event_jCerrarMouseClicked
+
+    private void jCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCerrarActionPerformed
+
+
+
+     FrmLogin salir =new FrmLogin();
+    salir.setVisible(true);
+    this.setVisible(false);
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCerrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,6 +318,8 @@ public class FrmMenu extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -250,9 +330,14 @@ public class FrmMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jCerrar;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenuAyuda;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuInventario;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItemAgregVe;
     private javax.swing.JMenuItem jMenuItemAgregarEn;
     private javax.swing.JMenuItem jMenuItemAgregarInve;
@@ -262,5 +347,6 @@ public class FrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemVerVe;
     private javax.swing.JMenu jMenuNEntrega;
     private javax.swing.JMenu jMenuNVenta;
+    private javax.swing.JMenuItem jVerUsuarios;
     // End of variables declaration//GEN-END:variables
 }
