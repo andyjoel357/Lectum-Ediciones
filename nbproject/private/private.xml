@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/razin/OneDrive/Documentos/NetBeansProjects/LectumEdicion/src/vista/FrmLogin.java</file>
-            <file>file:/C:/Users/razin/OneDrive/Documentos/NetBeansProjects/LectumEdicion/src/modelo/Inventario.java</file>
-            <file>file:/C:/Users/razin/OneDrive/Documentos/NetBeansProjects/LectumEdicion/src/vista/AgregarUsuario.java</file>
-            <file>file:/C:/Users/razin/OneDrive/Documentos/NetBeansProjects/LectumEdicion/src/vista/interNotaDeEntrega.java</file>
-            <file>file:/C:/Users/razin/OneDrive/Documentos/NetBeansProjects/LectumEdicion/src/vista/FrmMenu.java</file>
+            <file>file:/C:/Users/Oscar/Downloads/Lectum-Ediciones-master%20(1)/Lectum-Ediciones-master/src/vista/interNotaDeEntrega.java</file>
+            <file>file:/C:/Users/Oscar/Downloads/Lectum-Ediciones-master%20(1)/Lectum-Ediciones-master/src/vista/InternalFrameInventario/InternalVerInventario.java</file>
+            <file>file:/C:/Users/Oscar/Downloads/Lectum-Ediciones-master%20(1)/Lectum-Ediciones-master/src/vista/InternalFrameInventario/InternalFrameActualizacion.java</file>
+            <file>file:/C:/Users/Oscar/Downloads/Lectum-Ediciones-master%20(1)/Lectum-Ediciones-master/src/vista/InternalFrameInventario/InternalAgregarLibros.java</file>
+            <file>file:/C:/Users/Oscar/Downloads/Lectum-Ediciones-master%20(1)/Lectum-Ediciones-master/src/vista/FrmMenu.java</file>
         </group>
     </open-files>
 </project-private>
