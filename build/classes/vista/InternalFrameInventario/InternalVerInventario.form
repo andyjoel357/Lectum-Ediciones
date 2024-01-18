@@ -36,11 +36,13 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="BtnMostrarInventario" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-              <Component id="BtnMod" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-              <Component id="BtnEliminar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Component id="jButtonGuardar" min="-2" pref="111" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="jButtonEditar" min="-2" pref="111" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="jButtonEditar1" min="-2" pref="111" max="-2" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,9 +55,10 @@
               <Component id="jScrollPane2" min="-2" pref="300" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BtnMod" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BtnMostrarInventario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonGuardar" alignment="3" max="32767" attributes="0"/>
+                  <Component id="jButtonEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonEditar1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="75" max="32767" attributes="0"/>
           </Group>
@@ -65,6 +68,7 @@
   <SubComponents>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
@@ -86,7 +90,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -99,25 +103,6 @@
         <Property name="text" type="java.lang.String" value="Inventario"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="BtnMod">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Bodoni MT" size="24" style="2"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Modificar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnModActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnEliminar">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Bodoni MT" size="24" style="2"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Eliminar"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="BtnMostrarInventario">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -127,6 +112,39 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnMostrarInventarioActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonGuardar">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Light" size="18" style="3"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Guardar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGuardarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonEditar">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Light" size="18" style="3"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Editar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonEditar1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Light" size="18" style="3"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Eliminar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditar1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

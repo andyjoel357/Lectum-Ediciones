@@ -7,12 +7,17 @@ package vista.InternalFrameInventario;
 import conexion.Conexion;
 import controlador.Ctrl_Inventario;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import modelo.Inventario;
 import static vista.FrmMenu.jDesktopPane_menu;
 
 /**
@@ -20,6 +25,8 @@ import static vista.FrmMenu.jDesktopPane_menu;
  * @author Andy_T
  */
 public class InternalVerInventario extends javax.swing.JInternalFrame {
+
+    private Object id;
 
     /**
      * Creates new form InternalVerInventario
@@ -84,9 +91,10 @@ public void mostrarInventario(String tabla) {
         jScrollPane2 = new javax.swing.JScrollPane();
         visor = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        BtnMod = new javax.swing.JButton();
-        BtnEliminar = new javax.swing.JButton();
         BtnMostrarInventario = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonEditar1 = new javax.swing.JButton();
 
         visor.setFont(new java.awt.Font("Bodoni MT", 2, 14)); // NOI18N
         visor.setModel(new javax.swing.table.DefaultTableModel(
@@ -105,22 +113,35 @@ public void mostrarInventario(String tabla) {
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 2, 48)); // NOI18N
         jLabel1.setText("Inventario");
 
-        BtnMod.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
-        BtnMod.setText("Modificar");
-        BtnMod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnModActionPerformed(evt);
-            }
-        });
-
-        BtnEliminar.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
-        BtnEliminar.setText("Eliminar");
-
         BtnMostrarInventario.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
         BtnMostrarInventario.setText("Mostrar Inventario");
         BtnMostrarInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnMostrarInventarioActionPerformed(evt);
+            }
+        });
+
+        jButtonGuardar.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
+
+        jButtonEditar.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
+        jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+
+        jButtonEditar1.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
+        jButtonEditar1.setText("Eliminar");
+        jButtonEditar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditar1ActionPerformed(evt);
             }
         });
 
@@ -141,11 +162,13 @@ public void mostrarInventario(String tabla) {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(BtnMostrarInventario)
-                .addGap(49, 49, 49)
-                .addComponent(BtnMod)
-                .addGap(116, 116, 116)
-                .addComponent(BtnEliminar)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jButtonEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,9 +179,10 @@ public void mostrarInventario(String tabla) {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnMod)
-                    .addComponent(BtnEliminar)
-                    .addComponent(BtnMostrarInventario))
+                    .addComponent(BtnMostrarInventario)
+                    .addComponent(jButtonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonEditar)
+                    .addComponent(jButtonEditar1))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
@@ -170,20 +194,146 @@ public void mostrarInventario(String tabla) {
         mostrarInventario("lista_libros");
     }//GEN-LAST:event_BtnMostrarInventarioActionPerformed
 
-    private void BtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModActionPerformed
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
-          InternalFrameActualizacion ver= new InternalFrameActualizacion();
-        jDesktopPane_menu.add(ver);
-        ver.setVisible(true);
-    }//GEN-LAST:event_BtnModActionPerformed
+        Inventario inventario = new Inventario(); //nueva funcion por crear
+        Ctrl_Inventario controInventario = new Ctrl_Inventario();
+
+        if (txt_titulo.getText().isEmpy()) {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+        } else {
+            if (!controInventario.existeCategoria(txt_titulo.getText().trim())) {
+
+                inventario.getTitulo(txt_titulo.getText().trim());
+                inventario.setAutor("");
+                inventario.setNumero_paginas(1);
+                inventario.setCodigo("");
+                inventario.setStock("");
+                if (controInventario.guardar(inventario)) {
+                    JOptionPane.showMessageDialog(null, "Registro Guardados");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al guardar");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El autor ya existe");
+            }
+        }
+        txt_titulo.setText("");
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // TODO add your handling code here:
+        if (!txt_titulo.getText().isEmpty()) {
+            Inventario inventario = new Inventario();
+            Ctrl_Inventario controlInventario = new Ctrl_Inventario();
+            inventario.setAutor(txt_titulo.getText().trim());
+            if (controlInventario.editar(inventario, id)) {
+                JOptionPane.showMessageDialog(null, "Libro Editado");
+            }else{
+                JOptionPane.showMessageDialog(null, "Error al editar");
+                txt_titulo.setText("");
+                this.Cargarlista();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione un libro");
+        }
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditar1ActionPerformed
+        // TODO add your handling code here:
+        if (!txt_titulo.getText().isEmpty()) {
+            Inventario inventario = new Inventario();
+            Ctrl_Inventario controlInventario = new Ctrl_Inventario();
+            inventario.setAutor(txt_titulo.getText().trim());
+            if (controlInventario.eliminar(inventario,id)) {
+                JOptionPane.showMessageDialog(null, "Libro Eliminado");
+            }else{
+                JOptionPane.showMessageDialog(null, "Error al eliminar");
+                txt_titulo.setText("");
+                this.Cargarlista();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione un libro");
+        }
+    }//GEN-LAST:event_jButtonEditar1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnEliminar;
-    private javax.swing.JButton BtnMod;
     private javax.swing.JButton BtnMostrarInventario;
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonEditar1;
+    private javax.swing.JButton jButtonGuardar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTable visor;
+    public static javax.swing.JScrollPane jScrollPane2;
+    public static javax.swing.JTable visor;
     // End of variables declaration//GEN-END:variables
+
+    /*Metodo para mostrar lista*/
+    private void Cargarlista() {   //funcion para ver la lista (aun faltante para que se mustre)
+        Connection con = Conexion.conectar();
+        DefaultTableModel model = new DefaultTableModel();
+        String sql = "select id, titulo, autor, numero_paginas, codigo, stock from lista_libros";
+        Statement st;
+
+        try {
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            InternalVerInventario.visor = new JTable(model);
+            InternalVerInventario.jScrollPane2.setViewportView(InternalVerInventario.visor);
+            model.addColumn(id);
+            Object titulo = null;
+            model.addColumn(titulo);
+            Object autor = null;
+            model.addColumn(autor);
+            Object numero_paginas = null;
+            model.addColumn(numero_paginas);
+            Object codigo = null;
+            model.addColumn(codigo);
+            Object stock = null;
+            model.addColumn(stock);
+
+            while (rs.next()) {
+                Object fila[] = new Object[6];
+                for (int i = 0; i < 6; i++) {
+                    fila[i] = rs.getObject(i + 1);
+                }
+                model.addRow(fila);
+            }
+
+            con.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al llenar la Tabla" + e);
+        }
+        visor.addMouseListener(new MouseAdapter() {
+            public void mousClicked(MouseEvent e) {
+                int fila_point = visor.rowAtPoint(e.getPoint());
+                int columna_point = 0;
+
+                if (fila_point > -1) {
+                    id = (int) model.getValueAt(fila_point, columna_point);
+                    EnviarDatos(id);
+                }
+            }
+
+            private void EnviarDatos(Object id) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        });
+    }
+
+    private void EnviarDatos(int id) {
+        try {
+            Connection con = Conexion.conectar();
+            PreparedStatement pst = con.prepareStatement("select * from lista_libros where id ='" + id + "'");
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                txt_titulo.setText(rs.getString("titulo")); //codigo faltante
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error al cargar lista: " + e);
+        }
+    }
+
 }

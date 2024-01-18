@@ -39,8 +39,71 @@ public class Ctrl_Inventario {
         return respuesta;
 
     }
+public boolean editar(Inventario objeto, int id) {
+        boolean respuesta = false;
+        Connection cn = conexion.Conexion.conectar();
 
-   
+        try {
+            PreparedStatement consulta = cn.prepareStatement("update visor set Autor ? where id ='" + id + "'");
+            consulta.setString(1, objeto.getAutor());
+
+            if (consulta.executeUpdate() > 0) {
+                respuesta = true;
+
+            }
+
+            cn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al editar Libro " + e);
+        }
+
+        return respuesta;
+
+    }
+
+    public boolean eliminar(Inventario objeto, int id) {
+        boolean respuesta = false;
+        Connection cn = conexion.Conexion.conectar();
+
+        try {
+            PreparedStatement consulta = cn.prepareStatement("delete from visor where id ='" + id + "'");
+            consulta.executeUpdate();
+
+            if (consulta.executeUpdate() > 0) {
+                respuesta = true;
+
+            }
+
+            cn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar Libro " + e);
+        }
+
+        return respuesta;
+
+    }
+
+    public boolean existeCategoria(String inventario) {
+        boolean respuesta = false;
+        String sql="select autor from lista_libros where autor ='"+inventario+"';";
+        Statement st;
+        
+        try {
+            Connection cn = Conexion.conectar();
+            st=cn.createStatement();
+            ResultSet rs= st.executeQuery(sql);
+            while(rs.next()){
+                respuesta = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al consultar Libro " + e);
+        }
+
+        return respuesta;
+
+    }
 
 }
 //    // Metodo para consultar libro
