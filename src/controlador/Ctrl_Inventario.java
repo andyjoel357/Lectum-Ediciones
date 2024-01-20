@@ -67,7 +67,7 @@ public boolean editar(Inventario objeto, int id) {
         Connection cn = conexion.Conexion.conectar();
 
         try {
-            PreparedStatement consulta = cn.prepareStatement("delete from visor where id ='" + id + "'");
+            PreparedStatement consulta = cn.prepareStatement("delete from lista_libros where id ='" + id + "'");
             consulta.executeUpdate();
 
             if (consulta.executeUpdate() > 0) {
