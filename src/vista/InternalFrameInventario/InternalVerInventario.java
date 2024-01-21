@@ -33,6 +33,7 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
         initComponents();
         this.setSize(new Dimension(700, 700));
         this.setTitle("Ver Inventario");
+        mostrarInventario("lista_libros");
 
     }
 
@@ -81,8 +82,7 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         visor = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        BtnMostrarInventario = new javax.swing.JButton();
-        jButtonGuardar = new javax.swing.JButton();
+        jButtonActualizar = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         Btn_Eliminar = new javax.swing.JButton();
 
@@ -118,19 +118,11 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 2, 48)); // NOI18N
         jLabel1.setText("Inventario");
 
-        BtnMostrarInventario.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
-        BtnMostrarInventario.setText("Mostrar Inventario");
-        BtnMostrarInventario.addActionListener(new java.awt.event.ActionListener() {
+        jButtonActualizar.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
+        jButtonActualizar.setText("Actualizar");
+        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnMostrarInventarioActionPerformed(evt);
-            }
-        });
-
-        jButtonGuardar.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
-        jButtonGuardar.setText("Guardar");
-        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarActionPerformed(evt);
+                jButtonActualizarActionPerformed(evt);
             }
         });
 
@@ -158,22 +150,20 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(240, 240, 240)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(BtnMostrarInventario)
-                .addGap(27, 27, 27)
-                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(79, 79, 79)
+                .addComponent(jButtonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(97, 97, 97)
                 .addComponent(Btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,26 +172,20 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnMostrarInventario)
-                    .addComponent(jButtonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonEditar)
                     .addComponent(Btn_Eliminar))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnMostrarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarInventarioActionPerformed
-        // TODO add your handling code here:
-        mostrarInventario("lista_libros");
-    }//GEN-LAST:event_BtnMostrarInventarioActionPerformed
-
-    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-
-    }//GEN-LAST:event_jButtonGuardarActionPerformed
+    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+mostrarInventario("lista_libros");
+    }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
 
@@ -217,10 +201,9 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnMostrarInventario;
     private javax.swing.JButton Btn_Eliminar;
+    private javax.swing.JButton jButtonActualizar;
     private javax.swing.JButton jButtonEditar;
-    private javax.swing.JButton jButtonGuardar;
     private javax.swing.JLabel jLabel1;
     public static javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JTable visor;

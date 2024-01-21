@@ -195,6 +195,7 @@ public class InternalAgregarLibros extends javax.swing.JInternalFrame {
             inventario.setStock(Txt_Stock.getText().trim());
             if (controlinventario.guardar(inventario)) {
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
+                setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Error al guardar");
 
