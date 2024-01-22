@@ -18,7 +18,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Inventario;
 import static vista.FrmMenu.jDesktopPane_menu;
+
 import conexion.Conexion;
+
 
 /**
  *
@@ -188,7 +190,9 @@ mostrarInventario("lista_libros");
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-
+InternalEditarLibros editar = new InternalEditarLibros();
+        jDesktopPane_menu.add(editar);
+        editar.setVisible(true);
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
@@ -239,6 +243,30 @@ mostrarInventario("lista_libros");
         } else {
             JOptionPane.showMessageDialog(null, "Por favor, seleccione un registro para eliminar");
         }
+
+        return true;
+    }
+    
+     public boolean editarId() {
+        Inventario inventario = new Inventario();
+        Ctrl_Inventario controlInventario = new Ctrl_Inventario();
+
+        int selectedRowIndex = visor.getSelectedRow();
+
+        // If a row is selected
+        if (selectedRowIndex != -1) {
+            // Get the DefaultTableModel from the JTable
+            DefaultTableModel model = (DefaultTableModel) visor.getModel();
+
+            // Get the ID of the selected book from the first column of the selected row
+            int id;
+            id = Integer.parseInt(model.getValueAt(selectedRowIndex,0 ).toString());
+
+           
+            // Set the ID of the inventario object
+            inventario.setId_libro(id);
+
+              }
 
         return true;
     }

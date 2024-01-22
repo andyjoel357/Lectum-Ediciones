@@ -39,13 +39,19 @@ public class Ctrl_Inventario {
         return respuesta;
 
     }
+    //aqui va  // ,int id
 public boolean editar(Inventario objeto, int id) {
         boolean respuesta = false;
         Connection cn = conexion.Conexion.conectar();
-
+        
         try {
-            PreparedStatement consulta = cn.prepareStatement("update visor set Autor ? where id ='" + id + "'");
-            consulta.setString(1, objeto.getAutor());
+            PreparedStatement consulta = cn.prepareStatement("update lista_libros set titulo = ?, autor = ?, numero_paginas = ?, codigo = ?, stock = ? where id ='" + id + "'");
+            
+            consulta.setString(1, objeto.getTitulo());
+            consulta.setString(2, objeto.getAutor());
+            consulta.setInt(3, objeto.getNumero_paginas());
+            consulta.setString(4, objeto.getCodigo());
+            consulta.setString(5, objeto.getStock());
 
             if (consulta.executeUpdate() > 0) {
                 respuesta = true;
@@ -55,10 +61,11 @@ public boolean editar(Inventario objeto, int id) {
             cn.close();
 
         } catch (SQLException e) {
-            System.out.println("Error al editar Libro " + e);
+            System.out.println("Error al guardar Libro " + e);
         }
 
         return respuesta;
+
 
     }
 

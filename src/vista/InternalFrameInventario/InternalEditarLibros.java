@@ -1,24 +1,57 @@
-
 package vista.InternalFrameInventario;
 
 import controlador.Ctrl_Inventario;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Inventario;
+import static vista.InternalFrameInventario.InternalVerInventario.visor;
 
 /**
  *
  * @author Andy_T
  */
-public class InternalAgregarLibros extends javax.swing.JInternalFrame {
+public class InternalEditarLibros extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form InternalAgregarLibros
      */
-    public InternalAgregarLibros() {
+    public InternalEditarLibros() {
         initComponents();
         this.setSize(new Dimension(785, 478));
         this.setTitle("Agregar Libros");
+        setText();
+
+    }
+
+    public void setText() {
+        int selectedRowIndex = visor.getSelectedRow();
+        if (selectedRowIndex != -1) {
+
+            //LLAMAMOS A LA TABLA
+            DefaultTableModel model = (DefaultTableModel) visor.getModel();
+
+            //OBTENEMOS LA SELECCION DE LA TABLA 
+            String titulo;
+            String autor;
+            String paginas;
+            String isbn;
+            String stock;
+
+            titulo = model.getValueAt(selectedRowIndex, 1).toString();
+            autor = model.getValueAt(selectedRowIndex, 2).toString();
+            paginas = model.getValueAt(selectedRowIndex, 3).toString();
+            isbn = model.getValueAt(selectedRowIndex, 4).toString();
+            stock = model.getValueAt(selectedRowIndex, 5).toString();
+
+            //LLENAR DATOS EN LOS TXT
+            Txt_titulo.setText(titulo);
+            Txt_Autor.setText(autor);
+            Txt_paginas.setText(paginas);
+            Txt_ISBN1.setText(isbn);
+            Txt_Stock.setText(stock);
+
+        }
     }
 
     /**
@@ -48,7 +81,7 @@ public class InternalAgregarLibros extends javax.swing.JInternalFrame {
         setMaximizable(true);
 
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 2, 48)); // NOI18N
-        jLabel1.setText("Agregar Libros");
+        jLabel1.setText("Editar Libros");
 
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
         jLabel2.setText("Titulo del libro:");
@@ -74,7 +107,7 @@ public class InternalAgregarLibros extends javax.swing.JInternalFrame {
         Txt_Stock.setPreferredSize(new java.awt.Dimension(150, 34));
 
         Btn_Guardar.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
-        Btn_Guardar.setText("Guardar Libro");
+        Btn_Guardar.setText("Editar Libro");
         Btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_GuardarActionPerformed(evt);
@@ -120,7 +153,6 @@ public class InternalAgregarLibros extends javax.swing.JInternalFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addGap(18, 18, 18)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
@@ -170,8 +202,8 @@ public class InternalAgregarLibros extends javax.swing.JInternalFrame {
 
         Inventario inventario = new Inventario();
         Ctrl_Inventario controlinventario = new Ctrl_Inventario();
+
         // Validar Campos vacios
-        
         if (Txt_titulo.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
         }
@@ -187,18 +219,36 @@ public class InternalAgregarLibros extends javax.swing.JInternalFrame {
         if (Txt_Stock.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
         } else {
-            
+
             inventario.setTitulo(Txt_titulo.getText().trim());
             inventario.setAutor(Txt_Autor.getText().trim());
             inventario.setNumero_paginas(Integer.parseInt(Txt_paginas.getText().trim()));
             inventario.setCodigo(Txt_ISBN1.getText().trim());
             inventario.setStock(Txt_Stock.getText().trim());
-            if (controlinventario.guardar(inventario)) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al guardar");
 
+            int selectedRowIndex = visor.getSelectedRow();
+
+            // SELECCCIONAR FILA DE LA TABLA
+            if (selectedRowIndex != -1) {
+
+                //LLAMAMOS A LA TABLA
+                DefaultTableModel model = (DefaultTableModel) visor.getModel();
+
+                //OBTENEMOS LA SELECCION DE LA TABLA 
+                int id;
+                id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
+
+                //SETIAMOS EL ID OBTENIDO
+                inventario.setId_libro(id);
+
+                //LLAMAMOS AL CONTROLADOR
+                if (controlinventario.editar(inventario, id)) {
+                    JOptionPane.showMessageDialog(null, "Libro Editado");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al editar");
+
+                }
             }
         }
 
