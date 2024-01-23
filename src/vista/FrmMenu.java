@@ -283,7 +283,7 @@ desktop.browse(uri);
 
     private void jVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVerUsuariosActionPerformed
       
-         String nombreUsuario = "admin"; // Puedes obtenerlo de un campo de texto si es dinámico
+         String nombreUsuario = "admin"; 
     String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
 
     try {
@@ -296,7 +296,7 @@ desktop.browse(uri);
             if (rs.next()) {
                 String contraseñaEncriptada = rs.getString("contraseña");
 
-                // Verificar la contraseña
+                
                 if (inputContraseña != null && verificarContraseña(inputContraseña, contraseñaEncriptada)) {
                     InternalVerUsuarios newframe = new InternalVerUsuarios();
                     jDesktopPane_menu.add(newframe);
@@ -314,11 +314,10 @@ desktop.browse(uri);
     }
 }
 
-// Método para verificar la contraseña (puedes usar una función de hash, por ejemplo)
-private boolean verificarContraseña(String contraseñaIngresada, String contraseñaAlmacenada) {
-    // Implementa tu lógica de verificación aquí (puedes usar una librería de hashing, como BCrypt)
-    return contraseñaIngresada.equals(contraseñaAlmacenada); // Esto es un ejemplo simple, no es seguro en un entorno real
 
+private boolean verificarContraseña(String contraseñaIngresada, String contraseñaAlmacenada) {
+    
+    return contraseñaIngresada.equals(contraseñaAlmacenada); 
     }//GEN-LAST:event_jVerUsuariosActionPerformed
 
     /**

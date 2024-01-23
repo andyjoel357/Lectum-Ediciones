@@ -238,7 +238,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void jButton_IniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IniciarSesion2ActionPerformed
-       String nombreUsuario = "admin"; // Puedes obtenerlo de un campo de texto si es dinámico
+       String nombreUsuario = "admin"; 
     String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
 
     try {
@@ -269,10 +269,9 @@ public class FrmLogin extends javax.swing.JFrame {
     }
 }
 
-// Método para encriptar la contraseña (puedes usar una función de hash, por ejemplo)
+
 private String encriptarContraseña(String contraseña) {
-    // Implementa tu lógica de encriptación aquí
-    return contraseña; // Esto es un ejemplo simple, no es seguro en un entorno real
+    return contraseña; 
 
     }//GEN-LAST:event_jButton_IniciarSesion2ActionPerformed
 
