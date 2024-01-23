@@ -3,6 +3,10 @@ package vista;
 import java.awt.Dimension;
 import java.awt.Desktop;
 import static java.awt.GridBagConstraints.BOTH;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
@@ -278,20 +282,42 @@ desktop.browse(uri);
     }//GEN-LAST:event_jCerrarActionPerformed
 
     private void jVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVerUsuariosActionPerformed
-        // TODO add your handling code here:
+      
+         String nombreUsuario = "admin"; // Puedes obtenerlo de un campo de texto si es dinámico
+    String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
 
-        String CONTRASEÑA_CORRECTA = "admin";
-        String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
+    try {
+         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "");
+        String query = "SELECT contraseña FROM usuarios WHERE nombre_usuario = ?";
+        try (PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setString(1, nombreUsuario);
+            ResultSet rs = pstmt.executeQuery();
 
-        if (inputContraseña != null && inputContraseña.equals(CONTRASEÑA_CORRECTA)) {
-            // La contraseña es correcta
-            InternalVerUsuarios newframe = new InternalVerUsuarios();
-            jDesktopPane_menu.add(newframe);
-            newframe.setVisible(true);
-        } else {
-            // La contraseña es incorrecta
-            JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Inténtalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+            if (rs.next()) {
+                String contraseñaEncriptada = rs.getString("contraseña");
+
+                // Verificar la contraseña
+                if (inputContraseña != null && verificarContraseña(inputContraseña, contraseñaEncriptada)) {
+                    InternalVerUsuarios newframe = new InternalVerUsuarios();
+                    jDesktopPane_menu.add(newframe);
+                    newframe.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Inténtalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+// Método para verificar la contraseña (puedes usar una función de hash, por ejemplo)
+private boolean verificarContraseña(String contraseñaIngresada, String contraseñaAlmacenada) {
+    // Implementa tu lógica de verificación aquí (puedes usar una librería de hashing, como BCrypt)
+    return contraseñaIngresada.equals(contraseñaAlmacenada); // Esto es un ejemplo simple, no es seguro en un entorno real
 
     }//GEN-LAST:event_jVerUsuariosActionPerformed
 

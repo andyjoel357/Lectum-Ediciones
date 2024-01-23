@@ -2,6 +2,10 @@ package vista;
 
 import controlador.Ctrl_Usuario;
 import java.awt.Dimension;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import javax.swing.*;
@@ -234,24 +238,41 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void jButton_IniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IniciarSesion2ActionPerformed
-        // TODO add your handling code here:
-        String CONTRASEÑA_CORRECTA = "admin";
-        String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
+       String nombreUsuario = "admin"; // Puedes obtenerlo de un campo de texto si es dinámico
+    String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
 
-        if (inputContraseña != null && inputContraseña.equals(CONTRASEÑA_CORRECTA)) {
+    try {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "");
+        String query = "SELECT contraseña FROM usuarios WHERE nombre_usuario = ?";
+        try (PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setString(1, nombreUsuario);
+            ResultSet rs = pstmt.executeQuery();
 
-            AgregarUsuario newframe = new AgregarUsuario();
+            if (rs.next()) {
+                String contraseñaEncriptada = rs.getString("contraseña");
 
-            newframe.setVisible(true);
-
-            this.dispose();
-
-        } else {
-
-            JOptionPane.showMessageDialog(this, "Contraseña incorrecta.Intentalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
-
+                // Verificar la contraseña
+                if (inputContraseña != null && contraseñaEncriptada.equals(encriptarContraseña(inputContraseña))) {
+                    AgregarUsuario newframe = new AgregarUsuario();
+                    newframe.setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Inténtalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
 
+// Método para encriptar la contraseña (puedes usar una función de hash, por ejemplo)
+private String encriptarContraseña(String contraseña) {
+    // Implementa tu lógica de encriptación aquí
+    return contraseña; // Esto es un ejemplo simple, no es seguro en un entorno real
 
     }//GEN-LAST:event_jButton_IniciarSesion2ActionPerformed
 
