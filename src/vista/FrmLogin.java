@@ -238,18 +238,18 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void jButton_IniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IniciarSesion2ActionPerformed
-       String nombreUsuario = "admin"; 
+       String nombre = "admin"; 
     String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
 
     try {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "");
-        String query = "SELECT contraseña FROM usuarios WHERE nombre_usuario = ?";
+        String query = "SELECT contrasena FROM usuario WHERE nombre = ?";
         try (PreparedStatement pstmt = con.prepareStatement(query)) {
-            pstmt.setString(1, nombreUsuario);
+            pstmt.setString(1, nombre);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                String contraseñaEncriptada = rs.getString("contraseña");
+                String contraseñaEncriptada = rs.getString("contrasena");
 
                 // Verificar la contraseña
                 if (inputContraseña != null && contraseñaEncriptada.equals(encriptarContraseña(inputContraseña))) {
@@ -272,6 +272,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
 private String encriptarContraseña(String contraseña) {
     return contraseña; 
+
 
     }//GEN-LAST:event_jButton_IniciarSesion2ActionPerformed
 
