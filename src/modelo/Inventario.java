@@ -8,6 +8,7 @@ public class Inventario {
     private int numero_paginas;
     private String codigo;
     private String stock;
+    private int precioU;
 
     public Inventario() {
         this.id_libro = 0;
@@ -16,17 +17,28 @@ public class Inventario {
         this.numero_paginas = 0;
         this.codigo = "";
         this.stock = "";
+        this.precioU = 0;
     }
 
-    public Inventario(int id_libro, String titulo, String autor, int numero_paginas, String codigo, String stock) {
+    public Inventario(int id_libro, String titulo, String autor, int numero_paginas, String codigo, String stock, int precioU) {
         this.id_libro = id_libro;
         this.titulo = titulo;
         this.autor = autor;
         this.numero_paginas = numero_paginas;
         this.codigo = codigo;
         this.stock = stock;
+        this.precioU = precioU;
     }
 
+    public int getPrecioU() {
+        return precioU;
+    }
+
+    public void setPrecioU(int precioU) {
+        this.precioU = precioU;
+    }
+
+    
     public int getId_libro() {
         return id_libro;
     }

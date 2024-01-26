@@ -3,17 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/joelj/OneDrive/Documentos/NetBeansProjects/Lectum-Ediciones/src/vista/FrmLogin.java</file>
-            <file>file:/C:/Users/joelj/OneDrive/Documentos/NetBeansProjects/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalAyuda.java</file>
-            <file>file:/C:/Users/joelj/OneDrive/Documentos/NetBeansProjects/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalVerInventario.java</file>
-            <file>file:/C:/Users/joelj/OneDrive/Documentos/NetBeansProjects/Lectum-Ediciones/src/vista/FrmMenu.java</file>
-            <file>file:/C:/Users/joelj/OneDrive/Documentos/NetBeansProjects/Lectum-Ediciones/src/controlador/Ctrl_Notas_Entrega.java</file>
-            <file>file:/C:/Users/joelj/OneDrive/Documentos/NetBeansProjects/Lectum-Ediciones/src/modelo/Inventario.java</file>
-            <file>file:/C:/Users/joelj/OneDrive/Documentos/NetBeansProjects/Lectum-Ediciones/src/modelo/Notas_Entrega.java</file>
-            <file>file:/C:/Users/joelj/OneDrive/Documentos/NetBeansProjects/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalVerUsuarios.java</file>
-            <file>file:/C:/Users/joelj/OneDrive/Documentos/NetBeansProjects/Lectum-Ediciones/src/modelo/Usuario.java</file>
-            <file>file:/C:/Users/joelj/OneDrive/Documentos/NetBeansProjects/Lectum-Ediciones/src/controlador/Ctrl_Usuario.java</file>
-            <file>file:/C:/Users/joelj/OneDrive/Documentos/NetBeansProjects/Lectum-Ediciones/src/controlador/Ctrl_Inventario.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalNotaDeVenta.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/modelo/Notas_Entrega.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/modelo/Usuario.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalVerUsuarios.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/controlador/Ctrl_Inventario.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/vista/FrmMenu.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/controlador/Ctrl_Notas_Entrega.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/modelo/DetalleVenta.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/vista/AgregarUsuario.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalAgregarLibros.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalEditarLibros.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/img/logo.png</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalAyuda.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalVerInventario.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/modelo/Inventario.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/vista/FrmLogin.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalNotaDeEntrega.java</file>
+            <file>file:/C:/Users/este1/Documents/PROGRAMACION/INSTITUTO/VINCULACION/Lectum-Ediciones/src/img/logolec.png</file>
         </group>
     </open-files>
 </project-private>

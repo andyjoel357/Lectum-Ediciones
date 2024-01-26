@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import vista.InternalFrameInventario.InternalAgregarLibros;
 import vista.InternalFrameInventario.InternalVerInventario;
 import vista.InternalFrameInventario.InternalAyuda;
+import vista.InternalFrameInventario.InternalNotaDeEntrega;
+import vista.InternalFrameInventario.InternalNotaDeVenta;
 import vista.InternalFrameInventario.InternalVerUsuarios;
 
 public class FrmMenu extends javax.swing.JFrame {
@@ -218,13 +220,15 @@ public class FrmMenu extends javax.swing.JFrame {
 
     private void jMenuItemVerInvenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerInvenActionPerformed
         // TODO add your handling code here:
-        InternalVerInventario ver= new InternalVerInventario();
+        InternalVerInventario ver = new InternalVerInventario();
         jDesktopPane_menu.add(ver);
         ver.setVisible(true);
     }//GEN-LAST:event_jMenuItemVerInvenActionPerformed
 
     private void jMenuItemAgregarEnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgregarEnActionPerformed
-
+        InternalNotaDeEntrega nEntrega = new InternalNotaDeEntrega();
+        jDesktopPane_menu.add(nEntrega);
+        nEntrega.setVisible(true);
 
     }//GEN-LAST:event_jMenuItemAgregarEnActionPerformed
 
@@ -248,20 +252,25 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemVerVeActionPerformed
 
     private void jMenuItemAgregVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgregVeActionPerformed
-        // TODO add your handling code here:
+        InternalNotaDeVenta nVenta = new InternalNotaDeVenta();
+        jDesktopPane_menu.add(nVenta);
+        nVenta.setVisible(true);
 
 
     }//GEN-LAST:event_jMenuItemAgregVeActionPerformed
 
     private void jMenuItemComoAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemComoAyudaActionPerformed
         // TODO add your handling code here:
-if (java.awt.Desktop.isDesktopSupported()) {
-java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
-if (desktop.isSupported(java.awt.Desktop.   Action.BROWSE)) {
-try {
-java.net.URI uri = new java.net.URI("https://www.instagram.com");
-desktop.browse(uri);
-} catch (Exception e) {}}}
+        if (java.awt.Desktop.isDesktopSupported()) {
+            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+            if (desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
+                try {
+                    java.net.URI uri = new java.net.URI("https://www.instagram.com");
+                    desktop.browse(uri);
+                } catch (Exception e) {
+                }
+            }
+        }
     }//GEN-LAST:event_jMenuItemComoAyudaActionPerformed
 
     private void jCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCerrarMouseClicked
@@ -270,7 +279,7 @@ desktop.browse(uri);
 
     private void jCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCerrarActionPerformed
 
-        FrmLogin salir =new FrmLogin();
+        FrmLogin salir = new FrmLogin();
         salir.setVisible(true);
         this.setVisible(false);
 

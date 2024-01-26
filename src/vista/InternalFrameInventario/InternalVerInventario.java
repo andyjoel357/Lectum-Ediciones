@@ -52,10 +52,11 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
         model.addColumn("Numero de Paginas");
         model.addColumn("Codigo");
         model.addColumn("Stock");
+        model.addColumn("Precio Unitario");
 
         visor.setModel(model);
 
-        String[] datos = new String[6];
+        String[] datos = new String[7];
 
         try {
             st = cn.createStatement();
@@ -67,6 +68,7 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
                 datos[3] = rs.getString(4);
                 datos[4] = rs.getString(5);
                 datos[5] = rs.getString(6);
+                datos[6] = rs.getString(7);
                 model.addRow(datos);
             }
 
