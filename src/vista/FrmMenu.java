@@ -7,10 +7,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import vista.InternalFrameInventario.InternalAgregarLibros;
 import vista.InternalFrameInventario.InternalVerInventario;
 import vista.InternalFrameInventario.InternalAyuda;
@@ -283,44 +285,39 @@ desktop.browse(uri);
 
     private void jVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVerUsuariosActionPerformed
       
-//         String nombreUsuario = "admin"; 
-//    String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
-//
-//    try {
-//         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "");
-//        String query = "SELECT contraseña FROM usuarios WHERE nombre_usuario = ?";
-//        try (PreparedStatement pstmt = con.prepareStatement(query)) {
-//            pstmt.setString(1, nombreUsuario);
-//            ResultSet rs = pstmt.executeQuery();
-//
-//            if (rs.next()) {
-//                String contraseñaEncriptada = rs.getString("contraseña");
-//
-//                
-//                if (inputContraseña != null && verificarContraseña(inputContraseña, contraseñaEncriptada)) {
-//                    InternalVerUsuarios newframe = new InternalVerUsuarios();
-//                    jDesktopPane_menu.add(newframe);
-//                    newframe.setVisible(true);
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Inténtalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
-//    } catch (Exception e) {
-//        e.printStackTrace();
-//        JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-//    }
-//}
-//
-//
-//private boolean verificarContraseña(String contraseñaIngresada, String contraseñaAlmacenada) {
-//    
-//    return contraseñaIngresada.equals(contraseñaAlmacenada); 
-    InternalVerUsuarios newframe = new InternalVerUsuarios();
-    jDesktopPane_menu.add(newframe);
-                   newframe.setVisible(true);
+JPasswordField passwordField = new JPasswordField();
+        Object[] fields = {"Contraseña:", passwordField};
+
+        int option = JOptionPane.showConfirmDialog(null, fields, "Ingrese su contraseña", JOptionPane.OK_CANCEL_OPTION);
+
+        if (option == JOptionPane.OK_OPTION) {
+            String password = String.valueOf(passwordField.getPassword());
+
+            if (!password.isEmpty()) {
+                // Realizar la autenticación con la base de datos
+                try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "")) {
+                    String sql = "SELECT * FROM administrador WHERE contrasena = ?";
+                    PreparedStatement statement = conn.prepareStatement(sql);
+                    statement.setString(1, password);
+                    ResultSet resultSet = statement.executeQuery();
+
+                    if (resultSet.next()) {
+                        JOptionPane.showMessageDialog(null, "Contraseña correcta.");
+                        InternalVerUsuarios ver = new InternalVerUsuarios();
+                        ver.setVisible(true);
+                        this.setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta.");
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos: " + e.getMessage());
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacía.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Inicio de sesión cancelado.");
+        }
     }//GEN-LAST:event_jVerUsuariosActionPerformed
 
     /**
