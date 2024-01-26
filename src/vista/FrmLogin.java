@@ -173,7 +173,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -190,7 +190,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
                 .addComponent(jLabel1)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -202,7 +202,7 @@ public class FrmLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -223,6 +223,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 //----------------------------------
                 FrmMenu menu = new FrmMenu();
                 menu.setVisible(true);
+                this.setVisible(false);
                 //----------------------------------
             } else {
                 System.out.println("Fronted-false: " + controlUsuario.loginUser(usuario));
@@ -238,18 +239,18 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void jButton_IniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IniciarSesion2ActionPerformed
-       String nombre = "admin"; 
+       String nombreUsuario = "admin"; 
     String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
 
     try {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "");
-        String query = "SELECT contrasena FROM usuario WHERE nombre = ?";
+        String query = "SELECT contraseña FROM usuarios WHERE nombre_usuario = ?";
         try (PreparedStatement pstmt = con.prepareStatement(query)) {
-            pstmt.setString(1, nombre);
+            pstmt.setString(1, nombreUsuario);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                String contraseñaEncriptada = rs.getString("contrasena");
+                String contraseñaEncriptada = rs.getString("contraseña");
 
                 // Verificar la contraseña
                 if (inputContraseña != null && contraseñaEncriptada.equals(encriptarContraseña(inputContraseña))) {
@@ -273,6 +274,7 @@ public class FrmLogin extends javax.swing.JFrame {
 private String encriptarContraseña(String contraseña) {
     return contraseña; 
 
+        
 
     }//GEN-LAST:event_jButton_IniciarSesion2ActionPerformed
 

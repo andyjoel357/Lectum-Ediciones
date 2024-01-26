@@ -4,11 +4,15 @@
  */
 package vista;
 
+import controlador.Ctrl_Inventario;
+import controlador.Ctrl_Usuario;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import modelo.Inventario;
+import modelo.Usuario;
 
 
 /**
@@ -44,10 +48,10 @@ public class AgregarUsuario extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        nombre = new javax.swing.JTextField();
-        contraseña = new javax.swing.JTextField();
-        direccion = new javax.swing.JTextField();
-        telefono = new javax.swing.JTextField();
+        Txt_nombre = new javax.swing.JTextField();
+        Txt_contrasena = new javax.swing.JTextField();
+        Txt_direccion = new javax.swing.JTextField();
+        Txt_telefono = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -56,7 +60,6 @@ public class AgregarUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 102));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,31 +72,27 @@ public class AgregarUsuario extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 65));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Contraseña:");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Direccion:");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Telefono:");
 
-        nombre.addActionListener(new java.awt.event.ActionListener() {
+        Txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreActionPerformed(evt);
+                Txt_nombreActionPerformed(evt);
             }
         });
 
-        contraseña.addActionListener(new java.awt.event.ActionListener() {
+        Txt_contrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contraseñaActionPerformed(evt);
+                Txt_contrasenaActionPerformed(evt);
             }
         });
 
         jButton2.setBackground(new java.awt.Color(153, 255, 153));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add1.png"))); // NOI18N
         jButton2.setText("Agregar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -122,10 +121,10 @@ public class AgregarUsuario extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .addComponent(contraseña)
-                            .addComponent(direccion)
-                            .addComponent(telefono))
+                            .addComponent(Txt_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                            .addComponent(Txt_contrasena)
+                            .addComponent(Txt_direccion)
+                            .addComponent(Txt_telefono))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -139,21 +138,21 @@ public class AgregarUsuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addGap(30, 30, 30)
-                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
@@ -192,7 +191,6 @@ public class AgregarUsuario extends javax.swing.JFrame {
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -246,32 +244,51 @@ public class AgregarUsuario extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 
-        String nombre = this.nombre.getText();
-        String contraseña = this.contraseña.getText();
-        String direccion =this.direccion.getText();
-        String telefono =this.telefono.getText();
+        Usuario usuario = new Usuario();
+        Ctrl_Usuario controlusuario= new Ctrl_Usuario();
+        // Validar Campos vacios
         
-        if(nombre.isEmpty()|| contraseña.isEmpty() || direccion.isEmpty() || telefono.isEmpty()){
-            
-            JOptionPane.showMessageDialog(this, "Por favor, llene todos los campos","Advertencia",JOptionPane.WARNING_MESSAGE);
-        
-        
-        } else {
-            JOptionPane.showMessageDialog(this, "Agregado correctamente","Exitoso",JOptionPane.INFORMATION_MESSAGE);
+        if (Txt_nombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
         }
+        if (Txt_contrasena.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
+        }
+        if (Txt_direccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
+        }
+        if (Txt_telefono.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
+        }
+        
+         else {
+            
+            usuario.setNombre(Txt_nombre.getText().trim());
+            usuario.setContrasena(Txt_contrasena.getText().trim());
+            usuario.setDireccion(Txt_direccion.getText().trim());
+            usuario.setTelefono(Txt_telefono.getText().trim());
+            if (controlusuario.guardar(usuario)) {
+                JOptionPane.showMessageDialog(null, "Usuario Guardado");
+                FrmLogin login = new FrmLogin();
+                login.setVisible(true);
+                this.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al guardar el usuario");
 
+            }
+        }
                 
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+    private void Txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
+    }//GEN-LAST:event_Txt_nombreActionPerformed
 
-    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
+    private void Txt_contrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_contrasenaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_contraseñaActionPerformed
+    }//GEN-LAST:event_Txt_contrasenaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,8 +326,10 @@ public class AgregarUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField contraseña;
-    private javax.swing.JTextField direccion;
+    private javax.swing.JTextField Txt_contrasena;
+    private javax.swing.JTextField Txt_direccion;
+    private javax.swing.JTextField Txt_nombre;
+    private javax.swing.JTextField Txt_telefono;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -324,7 +343,5 @@ public class AgregarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField nombre;
-    private javax.swing.JTextField telefono;
     // End of variables declaration//GEN-END:variables
 }

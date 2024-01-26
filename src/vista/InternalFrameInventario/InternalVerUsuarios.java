@@ -33,7 +33,7 @@ public class InternalVerUsuarios extends javax.swing.JInternalFrame {
         initComponents();
         this.setSize(new Dimension(700, 700));
         this.setTitle("Ver Usuarios");
-        
+        mostrarUsuario("usuario");
 
     }
 public void mostrarUsuario(String tabla) {
@@ -81,11 +81,14 @@ public void mostrarUsuario(String tabla) {
         jScrollPane2 = new javax.swing.JScrollPane();
         visor = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        BtnMostrarInventario1 = new javax.swing.JButton();
         BtnEditar = new javax.swing.JButton();
         BtnEliminar1 = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
+
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         visor.setFont(new java.awt.Font("Bodoni MT", 2, 14)); // NOI18N
         visor.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,14 +107,6 @@ public void mostrarUsuario(String tabla) {
 
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 2, 48)); // NOI18N
         jLabel1.setText("USUARIOS");
-
-        BtnMostrarInventario1.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
-        BtnMostrarInventario1.setText("Mostrar Usuarios");
-        BtnMostrarInventario1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnMostrarInventario1ActionPerformed(evt);
-            }
-        });
 
         BtnEditar.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
         BtnEditar.setText("Editar");
@@ -135,13 +130,11 @@ public void mostrarUsuario(String tabla) {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(BtnMostrarInventario1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(121, 121, 121)
                 .addComponent(BtnEliminar1)
-                .addGap(80, 80, 80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnEditar)
-                .addGap(83, 83, 83))
+                .addGap(152, 152, 152))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,62 +146,20 @@ public void mostrarUsuario(String tabla) {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnEliminar1)
-                    .addComponent(BtnEditar)
-                    .addComponent(BtnMostrarInventario1))
-                .addGap(56, 56, 56))
+                    .addComponent(BtnEditar))
+                .addGap(64, 64, 64))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnMostrarInventario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarInventario1ActionPerformed
-InternalVerUsuarios internalVerUsuarios = new InternalVerUsuarios();
-internalVerUsuarios.mostrarUsuario("usuario");
-jDesktopPane_menu.add(internalVerUsuarios);
-internalVerUsuarios.setVisible(true);
-
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnMostrarInventario1ActionPerformed
-
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
-     
-     int selectedRow = visor.getSelectedRow();
-
-    if (selectedRow == -1) {
-        JOptionPane.showMessageDialog(null, "Seleccione un usuario para editar.");
-        return;
-    }
-
-    String idUsuario = (String) visor.getValueAt(selectedRow, 0);
-    String nombre = (String) visor.getValueAt(selectedRow, 1);
-    String direccion = (String) visor.getValueAt(selectedRow, 2);
-    String telefono = (String) visor.getValueAt(selectedRow, 3);
-
-    
-    try (Connection conn = Conexion.conectar();
-         Statement st = conn.createStatement()) {
-
-        String updateSql = "UPDATE lectum.usuario SET nombre = '" + nombre + "', direccion = '" + direccion +
-                "', telefono = '" + telefono + "' WHERE id_usuario = '" + idUsuario + "'";
-
-        int rowsAffected = st.executeUpdate(updateSql);
-
-        if (rowsAffected > 0) {
-         
-            mostrarUsuario("lectum.usuario");
-
-            JOptionPane.showMessageDialog(null, "Usuario actualizado exitosamente.");
-        } else {
-            JOptionPane.showMessageDialog(null, "No se pudo actualizar el usuario.");
-        }
-
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al actualizar el usuario: " + e.toString());
-    }
+        InternalActualizarUsuario actualizar = new InternalActualizarUsuario();
+        jDesktopPane_menu.add(actualizar);
+        actualizar.setVisible(true);
 
 
     }//GEN-LAST:event_BtnEditarActionPerformed
@@ -254,14 +205,13 @@ internalVerUsuarios.setVisible(true);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnEliminar1;
-    private javax.swing.JButton BtnMostrarInventario1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable visor;
     // End of variables declaration//GEN-END:variables
 
-    private void Usuario(String lista_libros) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
+    
+    
 }

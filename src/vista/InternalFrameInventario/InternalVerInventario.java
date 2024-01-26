@@ -88,6 +88,10 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
         jButtonEditar = new javax.swing.JButton();
         Btn_Eliminar = new javax.swing.JButton();
 
+        setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         visor.setFont(new java.awt.Font("Bodoni MT", 2, 14)); // NOI18N
         visor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

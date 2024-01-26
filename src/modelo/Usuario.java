@@ -13,13 +13,22 @@ public class Usuario {
     private String direccion;
     private String telefono;
 
-    public Usuario(int idUsuario, String nombre, String contrasena, String direccion, String telefono) {
+    public Usuario() {
         this.idUsuario = 0;
         this.nombre = "";
         this.contrasena = "";
         this.direccion = "";
         this.telefono = "";
     }
+
+    public Usuario(int idUsuario, String nombre, String contrasena, String direccion, String telefono) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.contrasena = contrasena;
+        this.direccion = direccion;
+        this.telefono = telefono;
+    }
+    
 
     public int getIdUsuario() {
         return idUsuario;

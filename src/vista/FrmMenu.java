@@ -283,41 +283,44 @@ desktop.browse(uri);
 
     private void jVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVerUsuariosActionPerformed
       
-         String nombre = "admin"; 
-    String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
-
-    try {
-         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "");
-        String query = "SELECT contrasena FROM usuario WHERE nombre = ?";
-        try (PreparedStatement pstmt = con.prepareStatement(query)) {
-            pstmt.setString(1, nombre);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                String contraseñaEncriptada = rs.getString("contrasena");
-
-                
-                if (inputContraseña != null && verificarContraseña(inputContraseña, contraseñaEncriptada)) {
-                    InternalVerUsuarios newframe = new InternalVerUsuarios();
-                    jDesktopPane_menu.add(newframe);
-                    newframe.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Inténtalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-}
-
-
-private boolean verificarContraseña(String contraseñaIngresada, String contraseñaAlmacenada) {
-    
-    return contraseñaIngresada.equals(contraseñaAlmacenada); 
+//         String nombreUsuario = "admin"; 
+//    String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
+//
+//    try {
+//         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "");
+//        String query = "SELECT contraseña FROM usuarios WHERE nombre_usuario = ?";
+//        try (PreparedStatement pstmt = con.prepareStatement(query)) {
+//            pstmt.setString(1, nombreUsuario);
+//            ResultSet rs = pstmt.executeQuery();
+//
+//            if (rs.next()) {
+//                String contraseñaEncriptada = rs.getString("contraseña");
+//
+//                
+//                if (inputContraseña != null && verificarContraseña(inputContraseña, contraseñaEncriptada)) {
+//                    InternalVerUsuarios newframe = new InternalVerUsuarios();
+//                    jDesktopPane_menu.add(newframe);
+//                    newframe.setVisible(true);
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Inténtalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+//    } catch (Exception e) {
+//        e.printStackTrace();
+//        JOptionPane.showMessageDialog(this, "Error de conexión a la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+//    }
+//}
+//
+//
+//private boolean verificarContraseña(String contraseñaIngresada, String contraseñaAlmacenada) {
+//    
+//    return contraseñaIngresada.equals(contraseñaAlmacenada); 
+    InternalVerUsuarios newframe = new InternalVerUsuarios();
+    jDesktopPane_menu.add(newframe);
+                   newframe.setVisible(true);
     }//GEN-LAST:event_jVerUsuariosActionPerformed
 
     /**
