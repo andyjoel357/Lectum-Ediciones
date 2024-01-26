@@ -2,6 +2,11 @@ package vista;
 
 import controlador.Ctrl_Usuario;
 import java.awt.Dimension;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import javax.swing.*;
@@ -41,7 +46,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton_IniciarSesion2 = new javax.swing.JButton();
+        Btn_agregarUsuario = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -86,13 +91,13 @@ public class FrmLogin extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user1.png"))); // NOI18N
 
-        jButton_IniciarSesion2.setBackground(new java.awt.Color(204, 255, 204));
-        jButton_IniciarSesion2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton_IniciarSesion2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_IniciarSesion2.setText("Agregar Usuario");
-        jButton_IniciarSesion2.addActionListener(new java.awt.event.ActionListener() {
+        Btn_agregarUsuario.setBackground(new java.awt.Color(204, 255, 204));
+        Btn_agregarUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Btn_agregarUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        Btn_agregarUsuario.setText("Agregar Usuario");
+        Btn_agregarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_IniciarSesion2ActionPerformed(evt);
+                Btn_agregarUsuarioActionPerformed(evt);
             }
         });
 
@@ -129,7 +134,7 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jButton_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_IniciarSesion2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Btn_agregarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel8)
@@ -155,7 +160,7 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton_IniciarSesion2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Btn_agregarUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_IniciarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
@@ -169,7 +174,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -186,7 +191,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
                 .addComponent(jLabel1)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -198,7 +203,7 @@ public class FrmLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -219,6 +224,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 //----------------------------------
                 FrmMenu menu = new FrmMenu();
                 menu.setVisible(true);
+                this.setVisible(false);
                 //----------------------------------
             } else {
                 System.out.println("Fronted-false: " + controlUsuario.loginUser(usuario));
@@ -233,27 +239,46 @@ public class FrmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_passwordActionPerformed
 
-    private void jButton_IniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IniciarSesion2ActionPerformed
-        // TODO add your handling code here:
-        String CONTRASEÑA_CORRECTA = "admin";
-        String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
+    private void Btn_agregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_agregarUsuarioActionPerformed
+       
+   JPasswordField passwordField = new JPasswordField();
+        Object[] fields = {"Contraseña:", passwordField};
 
-        if (inputContraseña != null && inputContraseña.equals(CONTRASEÑA_CORRECTA)) {
+        int option = JOptionPane.showConfirmDialog(null, fields, "Ingrese su contraseña", JOptionPane.OK_CANCEL_OPTION);
 
-            AgregarUsuario newframe = new AgregarUsuario();
+        if (option == JOptionPane.OK_OPTION) {
+            String password = String.valueOf(passwordField.getPassword());
 
-            newframe.setVisible(true);
+            if (!password.isEmpty()) {
+                // Realizar la autenticación con la base de datos
+                try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "")) {
+                    String sql = "SELECT * FROM administrador WHERE contrasena = ?";
+                    PreparedStatement statement = conn.prepareStatement(sql);
+                    statement.setString(1, password);
+                    ResultSet resultSet = statement.executeQuery();
 
-            this.dispose();
-
+                    if (resultSet.next()) {
+                        JOptionPane.showMessageDialog(null, "Contraseña correcta.");
+                        AgregarUsuario agregar = new AgregarUsuario();
+                        agregar.setVisible(true);
+                        this.setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta.");
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos: " + e.getMessage());
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacía.");
+            }
         } else {
-
-            JOptionPane.showMessageDialog(this, "Contraseña incorrecta.Intentalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
-
+            JOptionPane.showMessageDialog(null, "Inicio de sesión cancelado.");
         }
 
 
-    }//GEN-LAST:event_jButton_IniciarSesion2ActionPerformed
+        
+
+    }//GEN-LAST:event_Btn_agregarUsuarioActionPerformed
 
     private void txt_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usuarioActionPerformed
         // TODO add your handling code here:
@@ -295,9 +320,9 @@ public class FrmLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_agregarUsuario;
     private javax.swing.JButton jButton_IniciarSesion;
     private javax.swing.JButton jButton_IniciarSesion1;
-    private javax.swing.JButton jButton_IniciarSesion2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

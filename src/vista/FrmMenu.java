@@ -3,10 +3,16 @@ package vista;
 import java.awt.Dimension;
 import java.awt.Desktop;
 import static java.awt.GridBagConstraints.BOTH;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import vista.InternalFrameInventario.InternalAgregarLibros;
 import vista.InternalFrameInventario.InternalVerInventario;
 import vista.InternalFrameInventario.InternalAyuda;
@@ -287,21 +293,40 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCerrarActionPerformed
 
     private void jVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVerUsuariosActionPerformed
-        // TODO add your handling code here:
+      
+JPasswordField passwordField = new JPasswordField();
+        Object[] fields = {"Contraseña:", passwordField};
 
-        String CONTRASEÑA_CORRECTA = "admin";
-        String inputContraseña = JOptionPane.showInputDialog(this, "Ingrese la contraseña:");
+        int option = JOptionPane.showConfirmDialog(null, fields, "Ingrese su contraseña", JOptionPane.OK_CANCEL_OPTION);
 
-        if (inputContraseña != null && inputContraseña.equals(CONTRASEÑA_CORRECTA)) {
-            // La contraseña es correcta
-            InternalVerUsuarios newframe = new InternalVerUsuarios();
-            jDesktopPane_menu.add(newframe);
-            newframe.setVisible(true);
+        if (option == JOptionPane.OK_OPTION) {
+            String password = String.valueOf(passwordField.getPassword());
+
+            if (!password.isEmpty()) {
+                // Realizar la autenticación con la base de datos
+                try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "")) {
+                    String sql = "SELECT * FROM administrador WHERE contrasena = ?";
+                    PreparedStatement statement = conn.prepareStatement(sql);
+                    statement.setString(1, password);
+                    ResultSet resultSet = statement.executeQuery();
+
+                    if (resultSet.next()) {
+                        JOptionPane.showMessageDialog(null, "Contraseña correcta.");
+                        InternalVerUsuarios ver = new InternalVerUsuarios();
+                        ver.setVisible(true);
+                        this.setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta.");
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos: " + e.getMessage());
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacía.");
+            }
         } else {
-            // La contraseña es incorrecta
-            JOptionPane.showMessageDialog(this, "Contraseña incorrecta. Inténtalo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Inicio de sesión cancelado.");
         }
-
     }//GEN-LAST:event_jVerUsuariosActionPerformed
 
     /**

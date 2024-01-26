@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import modelo.Inventario;
 import modelo.Usuario;
 
 /**
@@ -38,6 +39,87 @@ public class Ctrl_Usuario {
 
         }
         return false;
+    }
+    public boolean guardar(Usuario objeto) {
+        boolean respuesta = false;
+        Connection cn = conexion.Conexion.conectar();
+        
+        try {
+            PreparedStatement consulta = cn.prepareStatement("insert usuario values(?,?,?,?,?)");
+            consulta.setInt(1, objeto.getIdUsuario());
+            consulta.setString(2, objeto.getNombre());
+            consulta.setString(3, objeto.getContrasena());
+            consulta.setString(4, objeto.getDireccion());
+            consulta.setString(5, objeto.getTelefono());
+            
+
+            if (consulta.executeUpdate() > 0) {
+                respuesta = true;
+
+            }
+
+            cn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al guardar Libro " + e);
+        }
+
+        return respuesta;
+
+    }
+    //metodo editar
+    public boolean editar(Usuario objeto, int idUsuario) {
+        boolean respuesta = false;
+        Connection cn = conexion.Conexion.conectar();
+        
+        try {
+            PreparedStatement consulta = cn.prepareStatement("update usuario set nombre =?, contrasena =?, direccion =?, telefono =? WHERE id_usuario ='"+idUsuario+"'");
+            
+            consulta.setString(1, objeto.getNombre());
+            consulta.setString(2, objeto.getContrasena());
+            consulta.setString(3, objeto.getDireccion());
+            consulta.setString(4, objeto.getTelefono());
+            
+
+            if (consulta.executeUpdate() > 0) {
+                respuesta = true;
+
+            }
+
+            cn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al editar usuario " + e);
+        }
+
+        return respuesta;
+
+    }
+     //metodo editar
+    public boolean eliminar( int idUsuario) {
+        boolean respuesta = false;
+        Connection cn = Conexion.conectar();
+        
+        try {
+            PreparedStatement consulta = cn.prepareStatement(
+                    "delete from usuario WHERE id_usuario ='"+idUsuario+"'");
+            consulta.executeUpdate();
+            
+            
+
+            if (consulta.executeUpdate() > 0) {
+                respuesta = true;
+
+            }
+
+            cn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar usuario " + e);
+        }
+
+        return respuesta;
+
     }
 }
 
