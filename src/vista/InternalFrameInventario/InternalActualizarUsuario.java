@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static sun.jvm.hotspot.HelloWorld.e;
 import static vista.FrmMenu.jDesktopPane_menu;
 import static vista.InternalFrameInventario.InternalVerInventario.visor;
 

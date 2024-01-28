@@ -1,5 +1,6 @@
 package vista;
 
+import conexion.Conexion;
 import java.awt.Dimension;
 import java.awt.Desktop;
 import static java.awt.GridBagConstraints.BOTH;
@@ -271,7 +272,7 @@ public class FrmMenu extends javax.swing.JFrame {
             java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
             if (desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
                 try {
-                    java.net.URI uri = new java.net.URI("https://www.instagram.com");
+                    java.net.URI uri = new java.net.URI("https://www.canva.com/design/DAF6M0hU0vs/SY6fi9qlzvDfbthWXoBDgQ/edit?utm_content=DAF6M0hU0vs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton");
                     desktop.browse(uri);
                 } catch (Exception e) {
                 }
@@ -293,28 +294,24 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jCerrarActionPerformed
 
     private void jVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVerUsuariosActionPerformed
-      
-JPasswordField passwordField = new JPasswordField();
+                  JPasswordField passwordField = new JPasswordField();
         Object[] fields = {"Contraseña:", passwordField};
 
         int option = JOptionPane.showConfirmDialog(null, fields, "Ingrese su contraseña", JOptionPane.OK_CANCEL_OPTION);
 
         if (option == JOptionPane.OK_OPTION) {
             String password = String.valueOf(passwordField.getPassword());
-
             if (!password.isEmpty()) {
                 // Realizar la autenticación con la base de datos
-                try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "")) {
+                try (Connection conn = Conexion.conectar()) { // Utilizar la conexión estática definida en la clase Conexion
                     String sql = "SELECT * FROM administrador WHERE contrasena = ?";
                     PreparedStatement statement = conn.prepareStatement(sql);
                     statement.setString(1, password);
                     ResultSet resultSet = statement.executeQuery();
-
                     if (resultSet.next()) {
                         JOptionPane.showMessageDialog(null, "Contraseña correcta.");
-                        InternalVerUsuarios ver = new InternalVerUsuarios();
-                        ver.setVisible(true);
-                        this.setVisible(false);
+                        var agregar = new InternalVerUsuarios();
+                        agregar.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Contraseña incorrecta.");
                     }
@@ -343,16 +340,24 @@ JPasswordField passwordField = new JPasswordField();
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

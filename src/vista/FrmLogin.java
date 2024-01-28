@@ -1,5 +1,6 @@
 package vista;
 
+import conexion.Conexion;
 import controlador.Ctrl_Usuario;
 import java.awt.Dimension;
 import java.sql.Connection;
@@ -240,23 +241,20 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void Btn_agregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_agregarUsuarioActionPerformed
-       
-   JPasswordField passwordField = new JPasswordField();
+            JPasswordField passwordField = new JPasswordField();
         Object[] fields = {"Contraseña:", passwordField};
 
         int option = JOptionPane.showConfirmDialog(null, fields, "Ingrese su contraseña", JOptionPane.OK_CANCEL_OPTION);
 
         if (option == JOptionPane.OK_OPTION) {
             String password = String.valueOf(passwordField.getPassword());
-
             if (!password.isEmpty()) {
                 // Realizar la autenticación con la base de datos
-                try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lectum", "root", "")) {
+                try (Connection conn = Conexion.conectar()) { // Utilizar la conexión estática definida en la clase Conexion
                     String sql = "SELECT * FROM administrador WHERE contrasena = ?";
                     PreparedStatement statement = conn.prepareStatement(sql);
                     statement.setString(1, password);
                     ResultSet resultSet = statement.executeQuery();
-
                     if (resultSet.next()) {
                         JOptionPane.showMessageDialog(null, "Contraseña correcta.");
                         AgregarUsuario agregar = new AgregarUsuario();
