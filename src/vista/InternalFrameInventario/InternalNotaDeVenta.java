@@ -39,6 +39,11 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
     private int subtotal = 0;
     private int descuento = 0;
     private int total = 0;
+    
+    
+    //TOTAL
+    private int subtotalGeneral = 0;
+    private int totalGeneral = 0;
 
     //Numero detalle
     private int auxIdDetalle = 1;
@@ -47,7 +52,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
     public InternalNotaDeVenta() {
         initComponents();
 
-        this.setSize(new Dimension(800, 600));
+        this.setSize(new Dimension(800, 700));
         this.setTitle("Nota de Venta");
 
         //CArgar productos en el COMBO BOX
@@ -112,8 +117,8 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        jTextTotal = new javax.swing.JTextField();
+        jTextSubtotal = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabelNumero = new javax.swing.JLabel();
@@ -133,15 +138,13 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLibros = new javax.swing.JTable();
-        jButtonAñadir = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButtonEliminar = new javax.swing.JButton();
         jLabel_wallpaper = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setClosable(true);
         setIconifiable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 170, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 80, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel9.setText("VENTA AL POR MAYOR Y MENOR DE LIBROS");
@@ -152,8 +155,8 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Fecha: ");
         jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 80, -1));
-        getContentPane().add(jTextBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 100, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 80, -1));
+        getContentPane().add(jTextBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 100, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -165,7 +168,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("Cantidad:");
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 80, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 80, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -180,7 +183,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, 140, 90));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, 140, 90));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("LECTUM EDICIONES");
@@ -195,7 +198,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logo_Pequeño.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, 180, 140));
-        getContentPane().add(jTextCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, 80, -1));
+        getContentPane().add(jTextCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 80, -1));
 
         jComboBoxLibro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxLibro.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +206,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                 jComboBoxLibroActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 110, -1));
+        getContentPane().add(jComboBoxLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 110, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -225,21 +228,21 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         jLabel17.setText("Desc. %:");
         jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 80, -1));
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 90, -1));
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 90, -1));
+        jPanel2.add(jTextTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 90, -1));
+        jPanel2.add(jTextSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 90, -1));
         jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 90, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 220, 120));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 220, 120));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Telefono:");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, 80, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 80, -1));
 
         jLabelNumero.setText("d");
         getContentPane().add(jLabelNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, 90, 20));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 80, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 80, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel12.setText("Telefono: 0999930173");
@@ -250,7 +253,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Dirección:");
         jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 80, -1));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 80, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("NOTA DE VENTA");
@@ -261,7 +264,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("Libro:");
         jLabel19.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 80, -1));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 80, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setText("QUITO - ECUADOR");
@@ -273,7 +276,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                 jTextField8ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 80, -1));
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 80, -1));
         getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 110, -1));
         getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 110, -1));
 
@@ -284,7 +287,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                 jButtonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, -1, -1));
+        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 102));
         jButton4.setText("Añadir Producto");
@@ -293,14 +296,14 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("RUC/CI:");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, 80, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 130, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 80, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, 80, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -318,21 +321,13 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTableLibros);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 675, 100));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 675, 130));
 
-        jButtonAñadir.setText("AÑADIR LIBRO");
-        jPanel1.add(jButtonAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
-
-        jButton3.setText("EDITAR");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, -1, -1));
-
-        jButtonEliminar.setText("ELIMINAR");
-        jPanel1.add(jButtonEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, -1, -1));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 700, 150));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 700, 150));
 
         jLabel_wallpaper.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 640));
+        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 640));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 880, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -423,6 +418,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                             jTextCantidad.setText("");//limpiar campo
                             //VOLVER A CARGAR COMBO PRODCUTO
                             this.cargarLibros();
+                            this.calcularTotal();
 
                         } else {
                             JOptionPane.showMessageDialog(null, "La cantidad supera stock actual: " + stock);
@@ -455,11 +451,8 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButtonAñadir;
     private javax.swing.JButton jButtonBuscar;
-    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JComboBox<String> jComboBoxLibro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -484,6 +477,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     public static javax.swing.JTable jTableLibros;
     private javax.swing.JTextField jTextBuscar;
     private javax.swing.JTextField jTextCantidad;
@@ -491,11 +485,11 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextSubtotal;
+    private javax.swing.JTextField jTextTotal;
     // End of variables declaration//GEN-END:variables
 
     //CARGARLOSPRODICTOS EN EL COMBO BOX
@@ -554,5 +548,22 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
             System.out.println("Error al obtener datos del producto" + e);
         }
     }
+     //METODO CALCULAR TOTAL A PAGAR
+    private void calcularTotal() {
+        
+
+        subtotalGeneral = 0;
+        totalGeneral = 0;
+
+        for (DetalleVenta elemento : listaLibros) {
+            subtotalGeneral += elemento.getSubtotal();
+            totalGeneral += elemento.getTotal();
+        }
+
+        jTextSubtotal.setText(String.valueOf(subtotalGeneral));
+        jTextTotal.setText(String.valueOf(totalGeneral));
+
+    }
 
 }
+
