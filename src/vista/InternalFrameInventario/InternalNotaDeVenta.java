@@ -5,6 +5,7 @@
 package vista.InternalFrameInventario;
 
 import controlador.Ctrl_RegistrarVenta;
+import controlador.VentaPDF;
 import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -351,7 +352,15 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                                 if (controlVenta.guardarCabezera(detalleCabecera)) {
 
                                     JOptionPane.showMessageDialog(null, "Venta Registrada");
-
+                                        
+                                    //generar pdfffffffff
+                                    
+                                    VentaPDF pdf = new VentaPDF();
+                                    
+                                    pdf.Datos(2);
+                                    pdf.generarPDF();
+                                    
+                                    
                                     //GUARDAR DETALLE
                                     for (DetalleVenta elemento : listaLibros) {
 
@@ -553,7 +562,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel_wallpaper;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     public static javax.swing.JTable jTableLibros;
     private javax.swing.JTextField jTextBuscar;
@@ -565,7 +574,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextRucCi;
     private javax.swing.JTextField jTextSubtotal;
     private javax.swing.JTextField jTextTelefono;
-    private javax.swing.JTextField jTextTotal;
+    public static javax.swing.JTextField jTextTotal;
     // End of variables declaration//GEN-END:variables
 
     //CARGARLOSPRODICTOS EN EL COMBO BOX
