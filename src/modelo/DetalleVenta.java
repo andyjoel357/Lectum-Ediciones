@@ -1,8 +1,8 @@
-
 package modelo;
 
 public class DetalleVenta {
     private int id_detalleVenta;
+    private int id_detalleCabecera;
     private int id_libro;
     
     private String titulo;
@@ -14,6 +14,7 @@ public class DetalleVenta {
     
     public DetalleVenta(){
     this.id_detalleVenta= 0;
+    this.id_detalleCabecera=0;
     this.id_libro = 0;
     this.titulo="";
     this.cantidad=0;
@@ -24,8 +25,9 @@ public class DetalleVenta {
        
     }
 
-    public DetalleVenta(int id_detalleVenta, int id_libro, String titulo, int cantidad, int precioU, int subtotal, int descuento, int total) {
+    public DetalleVenta(int id_detalleVenta, int id_detalleCabecera,int id_libro, String titulo, int cantidad, int precioU, int subtotal, int descuento, int total) {
         this.id_detalleVenta = id_detalleVenta;
+        this.id_detalleCabecera=id_detalleCabecera;
         this.id_libro = id_libro;
         this.titulo = titulo;
         this.cantidad = cantidad;
@@ -35,6 +37,15 @@ public class DetalleVenta {
         this.total = total;
     }
 
+    public int getId_detalleCabecera() {
+        return id_detalleCabecera;
+    }
+
+    public void setId_detalleCabecera(int id_detalleCabecera) {
+        this.id_detalleCabecera = id_detalleCabecera;
+    }
+
+    
     public int getId_detalleVenta() {
         return id_detalleVenta;
     }
