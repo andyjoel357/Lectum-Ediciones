@@ -31,6 +31,8 @@ public class VentaPDF {
     private String rucCi;
     private String telefono;
     private String direccion;
+    private String numeroF;
+  
 
     private String fecha = "";
     private String nombrePDF = "";
@@ -45,6 +47,7 @@ public class VentaPDF {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
+                numeroF=rs.getString("id_detalleCabecera");
                 institucion = rs.getString("institucion");
                 cliente = rs.getString("cliente");
                 rucCi = rs.getString("ruc_ci");
@@ -84,11 +87,11 @@ public class VentaPDF {
             PdfWriter.getInstance(doc, archivo);
             doc.open();
 
-           Image img = Image.getInstance("src/img/logolec.png");
+            Image img = Image.getInstance("src/img/logolec.png");
             Paragraph fechas = new Paragraph();
             Font negr = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLUE);
             fechas.add(Chunk.NEWLINE);//agregar neuva linea
-            fechas.add("FACTURA: 001" + "\nFecha: " + fecha + "\n\n");
+            fechas.add("FACTURA: "+numeroF + "\nFecha: " + fecha + "\n\n");
 
             PdfPTable Encabezado = new PdfPTable(4);
 
@@ -100,7 +103,7 @@ public class VentaPDF {
             Encabezado.setWidths(ColumnaEncabezado);
             Encabezado.setHorizontalAlignment(Element.ALIGN_LEFT);
 
-           Encabezado.addCell(img);
+            Encabezado.addCell(img);
 
             String rucE = "545545466";
             String nombreE = "AQUI VA EL NOMBRE";
@@ -109,7 +112,7 @@ public class VentaPDF {
 
             Encabezado.addCell("");
             Encabezado.addCell("Ruc: " + rucE + "\nNombre: " + nombreE + "\nTelefono: " + telefonoE + "\nDireccion" + direccionE);
-            Encabezado.addCell(fecha);
+            Encabezado.addCell(fechas);
             doc.add(Encabezado);
 
             //Cuerpo
@@ -188,9 +191,8 @@ public class VentaPDF {
             productos.addCell(producto4);
 
             for (int i = 0; i < InternalNotaDeVenta.jTableLibros.getRowCount(); i++) {
-
-                String producto = InternalNotaDeVenta.jTableLibros.getValueAt(i, 1).toString();
-                String cantidad = InternalNotaDeVenta.jTableLibros.getValueAt(i, 2).toString();
+                String cantidad = InternalNotaDeVenta.jTableLibros.getValueAt(i, 1).toString();
+                String producto = InternalNotaDeVenta.jTableLibros.getValueAt(i, 2).toString();
                 String precio = InternalNotaDeVenta.jTableLibros.getValueAt(i, 3).toString();
                 String total = InternalNotaDeVenta.jTableLibros.getValueAt(i, 4).toString();
 
@@ -200,40 +202,36 @@ public class VentaPDF {
                 productos.addCell(total);
 
             }
-            
+
             doc.add(productos);
-            
+
             //total a pagar
-            
             Paragraph info = new Paragraph();
-            
+
             info.add(Chunk.NEWLINE);
-            info.add("Total a pagar: "+InternalNotaDeVenta.jTextTotal.getText());
+            info.add("Descuento: "+ InternalNotaDeVenta.jTextDescuento.getText()+"%\n\n");
+            info.add("Total a pagar: " + InternalNotaDeVenta.jTextTotal.getText());
             info.setAlignment(Element.ALIGN_RIGHT);
             doc.add(info);
-            
-            
+
             //firma
-            
             Paragraph firma = new Paragraph();
             firma.add(Chunk.NEWLINE);
             firma.add("Cancelacion y firma\n\n");
             firma.add("________________________");
             firma.setAlignment(Element.ALIGN_CENTER);
             doc.add(firma);
-            
+
             Paragraph mensaje = new Paragraph();
             mensaje.add(Chunk.NEWLINE);
             mensaje.add("Gracias poasdsassadsadsadasd");
             mensaje.setAlignment(Element.ALIGN_CENTER);
             doc.add(mensaje);
-            
+
             doc.close();
             archivo.close();
 
             Desktop.getDesktop().open(file);
-            
-            
 
         } catch (DocumentException | IOException e) {
             System.out.println("ERROR AL GENERAR PDF " + e);

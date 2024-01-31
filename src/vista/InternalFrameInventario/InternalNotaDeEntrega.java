@@ -5,6 +5,7 @@
 package vista.InternalFrameInventario;
 
 import controlador.Ctrl_RegistrarVenta;
+import controlador.VentaPDF;
 import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -52,18 +53,25 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
     //Numero detalle
     private int auxIdDetalle = 1;
 
+    //idultimoVenta
+    private int idDatos = 0;
+
     //constructor
     public InternalNotaDeEntrega() {
         initComponents();
-
+        
         this.setSize(new Dimension(800, 700));
         this.setTitle("Nota de Venta");
 
         //CArgar productos en el COMBO BOX
         this.cargarLibros();
-
+        
         this.iniTablaLibros();
-
+        
+        //Numero NotaVenta
+        this.idDetalleVenta();
+        jLabelNumero.setText(String.valueOf(idDatos+1));
+        
     }
 
     //PASAR DATOS TABLA 
@@ -122,7 +130,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jLabel17 = new javax.swing.JLabel();
         jTextTotal = new javax.swing.JTextField();
         jTextSubtotal = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        jTextDescuento = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabelNumero = new javax.swing.JLabel();
         jTextDireccion = new javax.swing.JTextField();
@@ -140,8 +148,8 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLibros = new javax.swing.JTable();
-        jLabel_wallpaper = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel_wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -226,7 +234,13 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 80, -1));
         jPanel2.add(jTextTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 90, -1));
         jPanel2.add(jTextSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 90, -1));
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 90, -1));
+
+        jTextDescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextDescuentoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 90, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, 220, 120));
 
@@ -235,8 +249,6 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jLabel2.setText("Telefono:");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 80, -1));
-
-        jLabelNumero.setText("d");
         getContentPane().add(jLabelNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, 90, 20));
         getContentPane().add(jTextDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 80, -1));
 
@@ -252,7 +264,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 80, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("NOTA DE VENTA");
+        jLabel7.setText("NOTA DE ENTREGA");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, -1, -1));
 
@@ -313,48 +325,55 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 675, 130));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 700, 150));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 880, -1));
 
         jLabel_wallpaper.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 640));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 880, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        
         DetalleCabecera detalleCabecera = new DetalleCabecera();
         DetalleVenta detalleVenta = new DetalleVenta();
         Ctrl_RegistrarVenta controlVenta = new Ctrl_RegistrarVenta();
-
+        
         String fechaActual = "";
         Date date = new Date();
         fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(date);
-
+        
         if (!jTextInstitucion.getText().isEmpty()) {
             if (!jTextCliente.getText().isEmpty()) {
                 if (!jTextDireccion.getText().isEmpty()) {
                     if (!jTextRucCi.getText().isEmpty()) {
                         if (!jTextTelefono.getText().isEmpty()) {
-
+                            
                             if (listaLibros.size() > 0) {
 
                                 //REGISTRAR cabecera
                                 detalleCabecera.setId_detalleCabecera(0);
-                                detalleCabecera.setInstitucion(jTextDireccion.getText());
+                                detalleCabecera.setInstitucion(jTextInstitucion.getText());
                                 detalleCabecera.setCliente(jTextCliente.getText());
                                 detalleCabecera.setDireccion(jTextDireccion.getText());
                                 detalleCabecera.setRuc_ci(jTextRucCi.getText());
                                 detalleCabecera.setTelefono(Integer.parseInt(jTextTelefono.getText()));
                                 detalleCabecera.setFecha(fechaActual);
-
+                                
                                 if (controlVenta.guardarCabezera(detalleCabecera)) {
-
+                                    //Obtener id del dato guardado
+                                    this.idDetalleVenta();
                                     JOptionPane.showMessageDialog(null, "Venta Registrada");
+
+                                    //generar pdfffffffff
+                                    VentaPDF pdf = new VentaPDF();
+                                    
+                                    pdf.Datos(idDatos);
+                                    pdf.generarPDF();
 
                                     //GUARDAR DETALLE
                                     for (DetalleVenta elemento : listaLibros) {
-
+                                        
                                         detalleVenta.setId_detalleVenta(0);
                                         detalleVenta.setId_detalleCabecera(0);
                                         detalleVenta.setId_libro(elemento.getId_libro());
@@ -362,7 +381,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                                         detalleVenta.setPrecioU(elemento.getPrecioU());
                                         detalleVenta.setSubtotal(elemento.getSubtotal());
                                         detalleVenta.setTotal(elemento.getTotal());
-
+                                        
                                         if (controlVenta.guardarDetalle(detalleVenta)) {
 
                                             //System.out.println("SE HA REGISTRADO LA VENTA");
@@ -374,40 +393,40 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                                             jTextTelefono.setText("");
                                             jTextSubtotal.setText("");
                                             jTextTotal.setText("");
-
+                                            
                                             this.RestarStock(elemento.getId_libro(), elemento.getCantidad());
-
+                                            
                                         } else {
                                             JOptionPane.showMessageDialog(null, "Error al guardar detalle");
                                         }
-
+                                        
                                     }
                                     //LIMPIAR LISTA
                                     listaLibros.clear();
                                     listaTabla();
-
+                                    
                                 } else {
-
+                                    
                                     JOptionPane.showMessageDialog(null, "Error al guardar cabezera");
                                 }
-
+                                
                             } else {
                                 JOptionPane.showMessageDialog(null, "Agrege un producto");
                             }
-
+                            
                         } else {
                             JOptionPane.showMessageDialog(null, "Llene el campo de telefono");
                         }
-
+                        
                     } else {
                         JOptionPane.showMessageDialog(null, "Llene el campo de Ruc/Ci");
                     }
-
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Llene el campo de direccion");
-
+                    
                 }
-
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Llene el cliente");
             }
@@ -425,36 +444,36 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
 
     //BOTON BUSCAR
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-
+        
         String pBuscar = jTextBuscar.getText().trim();
         Connection cn = conexion.Conexion.conectar();
         String sql = "select titulo from lista_libros where titulo = '" + pBuscar + "'";
         Statement st;
-
+        
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 jComboBoxLibro.setSelectedItem(rs.getString("titulo"));
-
+                
             } else {
-
+                
                 jComboBoxLibro.setSelectedItem("Seleccione Libro:");
                 JOptionPane.showMessageDialog(null, "Titulo no encontrado");
-
+                
             }
             jTextBuscar.setText("");
             cn.close();
-
+            
         } catch (SQLException e) {
             System.out.println("Error al buscar el titulo" + e);
         }
-
+        
 
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        
         String combo = this.jComboBoxLibro.getSelectedItem().toString();
 
         //valdiar que se haya serlecicoando producto 
@@ -468,9 +487,9 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                 // VALIDAR QUE NO INGRESE CARACTERES
                 boolean validacion = validar(jTextCantidad.getText());
                 if (validacion == true) {
-
+                    
                     if (Integer.parseInt(jTextCantidad.getText()) > 0) {
-
+                        
                         cantidad = Integer.parseInt(jTextCantidad.getText());
 
                         //OBTENER DATOS DEL PRODUCTO
@@ -501,30 +520,36 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                             //VOLVER A CARGAR COMBO PRODCUTO
                             this.cargarLibros();
                             this.calcularTotal();
-
+                            
                         } else {
                             JOptionPane.showMessageDialog(null, "La cantidad supera stock actual: " + stock);
                         }
-
+                        
                     } else {
-
+                        
                         JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor a 0");
                     }
-
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "En cantidad solo se permiten numeros");
                 }
-
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Ingrese Cantidad de producto");
             }
-
+            
         }
         //LLAMAR METODO
 
         this.listaTabla();
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextDescuentoActionPerformed
+        Descuento();
+       
+        
+    }//GEN-LAST:event_jTextDescuentoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -559,21 +584,40 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextBuscar;
     private javax.swing.JTextField jTextCantidad;
     private javax.swing.JTextField jTextCliente;
+    public static javax.swing.JTextField jTextDescuento;
     private javax.swing.JTextField jTextDireccion;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextInstitucion;
     private javax.swing.JTextField jTextRucCi;
     private javax.swing.JTextField jTextSubtotal;
     private javax.swing.JTextField jTextTelefono;
-    private javax.swing.JTextField jTextTotal;
+    public static javax.swing.JTextField jTextTotal;
     // End of variables declaration//GEN-END:variables
+
+    //obtener id del ultimo detalle de cabezera registrada
+    private void idDetalleVenta() {
+        
+        try {
+            Connection cn = conexion.Conexion.conectar();
+            String sql = "SELECT * FROM cabeceraventa ORDER BY id_detalleCabecera DESC LIMIT 1";
+            Statement st;
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                idDatos = rs.getInt("id_detalleCabecera");
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Error al cargar Id" + e);
+        }
+        
+    }
 
     //CARGARLOSPRODICTOS EN EL COMBO BOX
     private void cargarLibros() {
         String sql = "select * from lista_libros";
         Statement st;
         Connection cn = conexion.Conexion.conectar();
-
+        
         try {
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -582,13 +626,13 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
             while (rs.next()) {
                 jComboBoxLibro.addItem(rs.getString("titulo"));
             }
-
+            
             cn.close();
-
+            
         } catch (SQLException e) {
-
+            
             System.out.println("Error al cargar productos" + e);
-
+            
         }
     }
 
@@ -604,22 +648,22 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
 
     //MOSTRAR LOS PRODUCTOS
     private void DatosDelProducto() {
-
+        
         try {
             String sql = "select * from lista_libros where titulo = '" + this.jComboBoxLibro.getSelectedItem() + "'";
             Connection cn = conexion.Conexion.conectar();
             Statement st;
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-
+            
             while (rs.next()) {
                 id_libro = rs.getInt("id_libro");
                 titulo = rs.getString("titulo");
                 stock = rs.getInt("stock");
                 precioU = rs.getInt("precioU");
-
+                
             }
-
+            
         } catch (SQLException e) {
             System.out.println("Error al obtener datos del producto" + e);
         }
@@ -627,56 +671,74 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
     //METODO CALCULAR TOTAL A PAGAR
 
     private void calcularTotal() {
-
+        
         subtotalGeneral = 0;
         totalGeneral = 0;
-
+        
         for (DetalleVenta elemento : listaLibros) {
             subtotalGeneral += elemento.getSubtotal();
             totalGeneral += elemento.getTotal();
         }
-
+        
         jTextSubtotal.setText(String.valueOf(subtotalGeneral));
         jTextTotal.setText(String.valueOf(totalGeneral));
+        
+    }
 
+    // descuento
+    private void Descuento() {
+        
+        int valorDescuento;
+        int valorActual;
+        int totalDescuento;
+                
+        if (jTextDescuento.getText().equals("")){
+        jTextTotal.setText(jTextSubtotal.getText());
+        }else{
+        valorActual = Integer.parseInt(jTextSubtotal.getText());
+        valorDescuento = Integer.parseInt(jTextDescuento.getText());
+        totalDescuento = valorActual - (valorActual) * valorDescuento / 100;
+        jTextTotal.setText(String.valueOf(totalDescuento));
+        }
+       
     }
 
     //RESTAR STOCK
     private void RestarStock(int id, int cantidad) {
-
+        
         int stock = 0;
-
+        
         try {
             Connection cn = conexion.Conexion.conectar();
             String sql = "select id_libro, stock from lista_libros where id_libro = '" + id + "'";
             Statement st;
             st = cn.createStatement();
-
+            
             ResultSet rs = st.executeQuery(sql);
-
+            
             while (rs.next()) {
                 stock = rs.getInt("stock");
-
+                
             }
             cn.close();
-
+            
         } catch (SQLException e) {
             System.out.println("Error al restar stock 1" + e);
         }
         try {
             Connection cn = conexion.Conexion.conectar();
-            PreparedStatement consulta=cn.prepareStatement("update lista_libros set stock=? where id_libro='"+id+"'");
-            int stockNueva = stock-cantidad;
+            PreparedStatement consulta = cn.prepareStatement("update lista_libros set stock=? where id_libro='" + id + "'");
+            int stockNueva = stock - cantidad;
             consulta.setInt(1, stockNueva);
-           if(consulta.executeUpdate()>0){
-               System.out.println("Se actulizo");
-           
-           }
-           cn.close();
+            if (consulta.executeUpdate() > 0) {
+                System.out.println("Se actulizo");
+                
+            }
+            cn.close();
         } catch (SQLException e) {
-
+            
             System.out.println("Error al restar stock 2" + e);
         }
     }
-
+    
 }
