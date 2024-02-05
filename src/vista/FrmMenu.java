@@ -310,8 +310,9 @@ public class FrmMenu extends javax.swing.JFrame {
                     ResultSet resultSet = statement.executeQuery();
                     if (resultSet.next()) {
                         JOptionPane.showMessageDialog(null, "Contraseña correcta.");
-                        var agregar = new InternalVerUsuarios();
-                        agregar.setVisible(true);
+                        InternalVerUsuarios usuarios = new InternalVerUsuarios();
+                        jDesktopPane_menu.add(usuarios);
+                        usuarios.setVisible(true);                     
                     } else {
                         JOptionPane.showMessageDialog(null, "Contraseña incorrecta.");
                     }

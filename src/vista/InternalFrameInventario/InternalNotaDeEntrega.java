@@ -61,7 +61,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         initComponents();
 
         this.setSize(new Dimension(800, 700));
-        this.setTitle("Nota de Venta");
+        this.setTitle("Nota de Entrega");
 
         //CArgar productos en el COMBO BOX
         this.cargarLibros();

@@ -83,6 +83,7 @@ public void mostrarUsuario(String tabla) {
         jLabel1 = new javax.swing.JLabel();
         BtnEditar = new javax.swing.JButton();
         BtnEliminar1 = new javax.swing.JButton();
+        BtnCrear = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -124,6 +125,14 @@ public void mostrarUsuario(String tabla) {
             }
         });
 
+        BtnCrear.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
+        BtnCrear.setText("Crear");
+        BtnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCrearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,9 +141,11 @@ public void mostrarUsuario(String tabla) {
             .addGroup(layout.createSequentialGroup()
                 .addGap(121, 121, 121)
                 .addComponent(BtnEliminar1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(87, 87, 87)
                 .addComponent(BtnEditar)
-                .addGap(152, 152, 152))
+                .addGap(64, 64, 64)
+                .addComponent(BtnCrear)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +160,8 @@ public void mostrarUsuario(String tabla) {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnEliminar1)
-                    .addComponent(BtnEditar))
+                    .addComponent(BtnEditar)
+                    .addComponent(BtnCrear))
                 .addGap(64, 64, 64))
         );
 
@@ -201,8 +213,13 @@ public void mostrarUsuario(String tabla) {
 
     }//GEN-LAST:event_BtnEliminar1ActionPerformed
 
+    private void BtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnCrearActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCrear;
     private javax.swing.JButton BtnEditar;
     private javax.swing.JButton BtnEliminar1;
     private javax.swing.JLabel jLabel1;

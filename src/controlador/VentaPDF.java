@@ -105,13 +105,13 @@ public class VentaPDF {
 
             Encabezado.addCell(img);
 
-            String rucE = "545545466";
-            String nombreE = "AQUI VA EL NOMBRE";
-            String telefonoE = "AQUI VA EL CEL";
-            String direccionE = "LA DIRECCION";
+            String rucE = "1711179166001";
+            String nombreE = "LECTUM EDICIONES";
+            String telefonoE = "0999930173";
+            String direccionE = "Via a Cotogchoa S/N, Av Gral Enriquez";
 
             Encabezado.addCell("");
-            Encabezado.addCell("Ruc: " + rucE + "\nNombre: " + nombreE + "\nTelefono: " + telefonoE + "\nDireccion" + direccionE);
+            Encabezado.addCell("Ruc: " + rucE + "\nNombre: " + nombreE + "\nTelefono: " + telefonoE + "\nDireccion: " + direccionE);
             Encabezado.addCell(fechas);
             doc.add(Encabezado);
 
@@ -217,14 +217,14 @@ public class VentaPDF {
             //firma
             Paragraph firma = new Paragraph();
             firma.add(Chunk.NEWLINE);
-            firma.add("Cancelacion y firma\n\n");
+            firma.add("Firma Autorizada\n\n");
             firma.add("________________________");
             firma.setAlignment(Element.ALIGN_CENTER);
             doc.add(firma);
 
             Paragraph mensaje = new Paragraph();
             mensaje.add(Chunk.NEWLINE);
-            mensaje.add("Gracias poasdsassadsadsadasd");
+            mensaje.add("Gracias por la Compra");
             mensaje.setAlignment(Element.ALIGN_CENTER);
             doc.add(mensaje);
 
