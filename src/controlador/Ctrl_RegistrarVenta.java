@@ -31,7 +31,7 @@ public class Ctrl_RegistrarVenta {
             consulta.setString(4, objeto.getFecha());
             consulta.setString(5, objeto.getDireccion());
             consulta.setString(6, objeto.getRuc_ci());
-            consulta.setInt(7, objeto.getTelefono());
+            consulta.setString(7, objeto.getTelefono());
 
             if (consulta.executeUpdate() > 0) {
                 respuesta = true;
@@ -65,10 +65,10 @@ public class Ctrl_RegistrarVenta {
             consulta.setInt(2, idCabeceraRegistrada);
             consulta.setInt(3, objeto.getId_libro());
             consulta.setInt(4, objeto.getCantidad());
-            consulta.setInt(5, objeto.getPrecioU());
-            consulta.setInt(6, objeto.getSubtotal());
-            consulta.setInt(7, objeto.getDescuento());
-            consulta.setInt(8, objeto.getTotal());
+            consulta.setDouble(5, objeto.getPrecioU());
+            consulta.setDouble(6, objeto.getSubtotal());
+            consulta.setDouble(7, objeto.getDescuento());
+            consulta.setDouble(8, objeto.getTotal());
             
             
 

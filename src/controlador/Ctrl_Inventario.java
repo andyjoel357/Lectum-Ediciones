@@ -1,12 +1,9 @@
  package controlador;
 
-import conexion.Conexion;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.table.DefaultTableModel;
 import modelo.Inventario;
 
 public class Ctrl_Inventario {
@@ -24,7 +21,7 @@ public class Ctrl_Inventario {
             consulta.setInt(4, objeto.getNumero_paginas());
             consulta.setString(5, objeto.getCodigo());
             consulta.setString(6, objeto.getStock());
-            consulta.setInt(7, objeto.getPrecioU());
+            consulta.setDouble(7, objeto.getPrecioU());
 
             if (consulta.executeUpdate() > 0) {
                 respuesta = true;
@@ -53,7 +50,7 @@ public boolean editar(Inventario objeto, int id) {
             consulta.setInt(3, objeto.getNumero_paginas());
             consulta.setString(4, objeto.getCodigo());
             consulta.setString(5, objeto.getStock());
-            consulta.setInt(6, objeto.getPrecioU());
+            consulta.setDouble(6, objeto.getPrecioU());
 
             if (consulta.executeUpdate() > 0) {
                 respuesta = true;

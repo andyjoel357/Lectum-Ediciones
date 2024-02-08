@@ -18,8 +18,8 @@ public class InternalEditarLibros extends javax.swing.JInternalFrame {
      */
     public InternalEditarLibros() {
         initComponents();
-        this.setSize(new Dimension(785, 478));
-        this.setTitle("Agregar Libros");
+        this.setSize(new Dimension(785, 380));
+        this.setTitle("Editar Libros");
         setText();
 
     }
@@ -52,7 +52,7 @@ public class InternalEditarLibros extends javax.swing.JInternalFrame {
             Txt_paginas.setText(paginas);
             Txt_ISBN1.setText(isbn);
             Txt_Stock.setText(stock);
-            Txt_PrecioU.setText(precioU);
+            Txt_precioU.setText(precioU);
 
         }
     }
@@ -79,7 +79,7 @@ public class InternalEditarLibros extends javax.swing.JInternalFrame {
         Btn_Editar = new javax.swing.JButton();
         Txt_ISBN1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        Txt_PrecioU = new javax.swing.JTextField();
+        Txt_precioU = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -132,54 +132,49 @@ public class InternalEditarLibros extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
-        jLabel7.setText("Precio U:");
+        jLabel7.setText("Precio Unitario:");
 
-        Txt_PrecioU.setPreferredSize(new java.awt.Dimension(150, 34));
+        Txt_precioU.setPreferredSize(new java.awt.Dimension(150, 34));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(Txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Txt_Autor, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 70, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Txt_Stock, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Txt_ISBN1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
-                        .addComponent(Btn_Editar))
+                        .addGap(396, 396, 396)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Txt_Autor, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(Txt_ISBN1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Txt_precioU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Txt_paginas, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Txt_paginas, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Txt_Stock, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(222, 222, 222)
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(Txt_PrecioU, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(331, 331, 331)
+                        .addComponent(Btn_Editar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(261, 261, 261)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,30 +182,33 @@ public class InternalEditarLibros extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txt_Autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Txt_paginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(Txt_Autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txt_Stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(Txt_ISBN1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                            .addComponent(Txt_ISBN1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Txt_PrecioU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Txt_Stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Txt_precioU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36)
                 .addComponent(Btn_Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,61 +219,69 @@ public class InternalEditarLibros extends javax.swing.JInternalFrame {
 
         Inventario inventario = new Inventario();
         Ctrl_Inventario controlinventario = new Ctrl_Inventario();
-
         // Validar Campos vacios
+
         if (Txt_titulo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
-        }
-        if (Txt_Autor.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
-        }
-        if (Txt_paginas.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
-        }
-        if (Txt_ISBN1.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
-        }
-        if (Txt_Stock.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
-        } 
-         if (Txt_PrecioU.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
-         }
-         else {
-
-            inventario.setTitulo(Txt_titulo.getText().trim());
-            inventario.setAutor(Txt_Autor.getText().trim());
-            inventario.setNumero_paginas(Integer.parseInt(Txt_paginas.getText().trim()));
-            inventario.setCodigo(Txt_ISBN1.getText().trim());
-            inventario.setStock(Txt_Stock.getText().trim());
-            inventario.setPrecioU(Integer.parseInt(Txt_PrecioU.getText().trim()));
-
-            int selectedRowIndex = visor.getSelectedRow();
-
-            // SELECCCIONAR FILA DE LA TABLA
-            if (selectedRowIndex != -1) {
-
-                //LLAMAMOS A LA TABLA
-                DefaultTableModel model = (DefaultTableModel) visor.getModel();
-
-                //OBTENEMOS LA SELECCION DE LA TABLA 
-                int id;
-                id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
-
-                //SETIAMOS EL ID OBTENIDO
-                inventario.setId_libro(id);
-
-                //LLAMAMOS AL CONTROLADOR
-                if (controlinventario.editar(inventario, id)) {
-                    JOptionPane.showMessageDialog(null, "Libro Editado");
-                    this.dispose();
+            JOptionPane.showMessageDialog(null, "Llene el campo Titulo");
+        } else if (Txt_Autor.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo Autor");
+        } else if (Txt_paginas.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo Número de Paginas");
+        } else {
+            // VALIDAR QUE NO INGRESE CARACTERES
+            boolean validacion = validar(Txt_paginas.getText());
+            if (validacion == false) {
+                JOptionPane.showMessageDialog(null, "El campo Número de Paginas solo acepta números");
+            } else if (Txt_ISBN1.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Llene el campo ISBN");
+            } else if (Txt_Stock.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Llene el campo Stock");
+            } else {
+                // VALIDAR QUE NO INGRESE CARACTERES
+                boolean validacionStock = validar(Txt_Stock.getText());
+                if (validacionStock == false) {
+                    JOptionPane.showMessageDialog(null, "El campo Stock solo acepta números");
+                } else if (Txt_precioU.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Llene el campo Precio Unitario");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error al editar");
+                    // VALIDAR QUE NO INGRESE CARACTERES
+                    boolean validacionPrecio = validarPrecio(Txt_precioU.getText());
+                    if (validacionPrecio == false) {
+                        JOptionPane.showMessageDialog(null, "El campo Precio Unitario solo acepta números y \".\"");
+                    } else {
 
-                }
-            }
-        }
+                        inventario.setTitulo(Txt_titulo.getText().trim());
+                        inventario.setAutor(Txt_Autor.getText().trim());
+                        inventario.setNumero_paginas(Integer.parseInt(Txt_paginas.getText().trim()));
+                        inventario.setCodigo(Txt_ISBN1.getText().trim());
+                        inventario.setStock(Txt_Stock.getText().trim());
+                        inventario.setPrecioU(Double.parseDouble(Txt_precioU.getText().trim()));
 
+                        int selectedRowIndex = visor.getSelectedRow();
+
+                        // SELECCCIONAR FILA DE LA TABLA
+                        if (selectedRowIndex != -1) {
+
+                            //LLAMAMOS A LA TABLA
+                            DefaultTableModel model = (DefaultTableModel) visor.getModel();
+
+                            //OBTENEMOS LA SELECCION DE LA TABLA 
+                            int id;
+                            id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
+
+                            //SETIAMOS EL ID OBTENIDO
+                            inventario.setId_libro(id);
+
+                            //LLAMAMOS AL CONTROLADOR
+                            if (controlinventario.editar(inventario, id)) {
+                                JOptionPane.showMessageDialog(null, "Libro Editado");
+                                this.dispose();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error al editar");
+
+                            }
+                        }
+                    }}}}
 
     }//GEN-LAST:event_Btn_EditarActionPerformed
 
@@ -292,9 +298,9 @@ public class InternalEditarLibros extends javax.swing.JInternalFrame {
     private javax.swing.JButton Btn_Editar;
     private javax.swing.JTextField Txt_Autor;
     private javax.swing.JTextField Txt_ISBN1;
-    private javax.swing.JTextField Txt_PrecioU;
     private javax.swing.JTextField Txt_Stock;
     private javax.swing.JTextField Txt_paginas;
+    private javax.swing.JTextField Txt_precioU;
     private javax.swing.JTextField Txt_titulo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -304,4 +310,22 @@ public class InternalEditarLibros extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
+//METODO VALIDAR NO CARACTERES 
+    private boolean validar(String valor) {
+        try {
+            int num = Integer.parseInt(valor);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean validarPrecio(String valor) {
+        try {
+            double num = Double.parseDouble(valor);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }

@@ -7,10 +7,10 @@ public class DetalleVenta {
     
     private String titulo;
     private int cantidad;
-    private int precioU;
-    private int subtotal;
-    private int descuento;
-    private int total;
+    private double precioU;
+    private double subtotal;
+    private double descuento;
+    private double total;
     
     public DetalleVenta(){
     this.id_detalleVenta= 0;
@@ -18,14 +18,14 @@ public class DetalleVenta {
     this.id_libro = 0;
     this.titulo="";
     this.cantidad=0;
-    this.precioU=0;
-    this.subtotal=0;
-    this.descuento=0;
-    this.total=0;
+    this.precioU=0.0;
+    this.subtotal=0.0;
+    this.descuento=0.0;
+    this.total=0.0;
        
     }
 
-    public DetalleVenta(int id_detalleVenta, int id_detalleCabecera,int id_libro, String titulo, int cantidad, int precioU, int subtotal, int descuento, int total) {
+    public DetalleVenta(int id_detalleVenta, int id_detalleCabecera,int id_libro, String titulo, int cantidad, double precioU, double subtotal, double descuento, double total) {
         this.id_detalleVenta = id_detalleVenta;
         this.id_detalleCabecera=id_detalleCabecera;
         this.id_libro = id_libro;
@@ -78,35 +78,35 @@ public class DetalleVenta {
         this.cantidad = cantidad;
     }
 
-    public int getPrecioU() {
+    public double getPrecioU() {
         return precioU;
     }
 
-    public void setPrecioU(int precioU) {
+    public void setPrecioU(double precioU) {
         this.precioU = precioU;
     }
 
-    public int getSubtotal() {
+    public double getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(int subtotal) {
+    public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
 
-    public int getDescuento() {
+    public double getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(int descuento) {
+    public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
 
-    public int getTotal() {
+    public double  getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 

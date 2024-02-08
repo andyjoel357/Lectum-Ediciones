@@ -1,19 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista;
 
-import controlador.Ctrl_Inventario;
 import controlador.Ctrl_Usuario;
 import javax.swing.JOptionPane;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import modelo.Inventario;
 import modelo.Usuario;
-
 
 /**
  *
@@ -245,24 +234,24 @@ public class AgregarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         Usuario usuario = new Usuario();
-        Ctrl_Usuario controlusuario= new Ctrl_Usuario();
+        Ctrl_Usuario controlusuario = new Ctrl_Usuario();
         // Validar Campos vacios
-        
+
         if (Txt_nombre.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
-        }
-        if (Txt_contrasena.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
-        }
-        if (Txt_direccion.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
-        }
-        if (Txt_telefono.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "LLENE TODOS LOS CAMPOS");
-        }
-        
-         else {
-            
+            JOptionPane.showMessageDialog(null, "Llene el campo de Nombre");
+        } else if (Txt_contrasena.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo de Contraseña");
+        } else if (Txt_direccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo de Dirección");
+        } else if (Txt_telefono.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo de Teléfono");
+
+        } else if (Txt_telefono.getText().length() > 10) {
+            JOptionPane.showMessageDialog(null, "El campo Teléfono deben tener 10 dígitos");
+        } else if (!Txt_telefono.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "El campo Télefono solo acepta números");
+        } else {
+
             usuario.setNombre(Txt_nombre.getText().trim());
             usuario.setContrasena(Txt_contrasena.getText().trim());
             usuario.setDireccion(Txt_direccion.getText().trim());
@@ -277,9 +266,8 @@ public class AgregarUsuario extends javax.swing.JFrame {
 
             }
         }
-                
-        
-        
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void Txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_nombreActionPerformed
@@ -344,4 +332,5 @@ public class AgregarUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     // End of variables declaration//GEN-END:variables
+
 }

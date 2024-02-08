@@ -1,20 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package vista.InternalFrameInventario;
 
-import conexion.Conexion;
+import controlador.Ctrl_Usuario;
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static vista.FrmMenu.jDesktopPane_menu;
-import static vista.InternalFrameInventario.InternalVerInventario.visor;
+import modelo.Usuario;
+import static vista.InternalFrameInventario.InternalVerUsuarios.visor;
 
 /**
  *
@@ -27,49 +18,37 @@ public class InternalActualizarUsuario extends javax.swing.JInternalFrame {
      */
     public InternalActualizarUsuario() {
         initComponents();
-        this.setSize(new Dimension(700, 700));
-        this.setTitle("Ver Usuarios");
-        mostrarUsuario("usuario");
+        this.setSize(new Dimension(700, 275));
+        this.setTitle("Editar Usuario");
+        setText();
     }
 
+    public void setText() {
+        int selectedRowIndex = visor.getSelectedRow();
+        if (selectedRowIndex != -1) {
 
-    public void mostrarUsuario(String tabla) {
-    String sql = "SELECT * FROM " + tabla;
-    Statement st;
-    Conexion conexion = new Conexion();
+            //LLAMAMOS A LA TABLA
+            DefaultTableModel model = (DefaultTableModel) visor.getModel();
 
-    try (Connection conn = Conexion.conectar()) {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Direccion");
-        modelo.addColumn("Telefono");
+            //OBTENEMOS LA SELECCION DE LA TABLA 
+            String nombre;
+            String contrasena;
+            String direccion;
+            String telefono;
 
-        visor.setModel(modelo);
+            nombre = model.getValueAt(selectedRowIndex, 1).toString();
+            contrasena = model.getValueAt(selectedRowIndex, 2).toString();
+            direccion = model.getValueAt(selectedRowIndex, 3).toString();
+            telefono = model.getValueAt(selectedRowIndex, 4).toString();
 
-        String[] datos = new String[4];
+            //LLENAR DATOS EN LOS TXT
+            Txt_nombre.setText(nombre);
+            Txt_contrasena.setText(contrasena);
+            Txt_direccion.setText(direccion);
+            Txt_telefono.setText(telefono);
 
-        st = conn.createStatement();
-        ResultSet rs = st.executeQuery(sql);
-
-        while (rs.next()) {
-            datos[0] = rs.getString(1);
-            datos[1] = rs.getString(2);
-            datos[2] = rs.getString(3);
-            datos[3] = rs.getString(4);
-            modelo.addRow(datos);
         }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error: " + e.toString());
     }
-    
-    
-    
-    }
-    
-    
-            
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,44 +62,29 @@ public class InternalActualizarUsuario extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Btn_Acutalizar = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        visor = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         Txt_nombre = new javax.swing.JTextField();
         Txt_telefono = new javax.swing.JTextField();
         Txt_direccion = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        Txt_contrasena = new javax.swing.JTextField();
 
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
 
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
-        jLabel1.setText("Actualizar Usuario");
+        jLabel1.setText("Editar Usuario");
 
         Btn_Acutalizar.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
-        Btn_Acutalizar.setText("Actualizar");
+        Btn_Acutalizar.setText("Editar");
         Btn_Acutalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_AcutalizarActionPerformed(evt);
             }
         });
-
-        visor.setFont(new java.awt.Font("Bodoni MT", 2, 14)); // NOI18N
-        visor.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Id", "Nombre", "Telefono ", "Direccion"
-            }
-        ));
-        jScrollPane3.setViewportView(visor);
 
         jLabel6.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
         jLabel6.setText("Nombre:");
@@ -131,61 +95,68 @@ public class InternalActualizarUsuario extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
         jLabel8.setText("Direccion:");
 
+        jLabel9.setFont(new java.awt.Font("Bodoni MT", 2, 24)); // NOI18N
+        jLabel9.setText("Contraseña:");
+
+        Txt_contrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Txt_contrasenaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
-                .addGap(33, 33, 33))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(218, 218, 218))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(Btn_Acutalizar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addComponent(Txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(Txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Txt_direccion))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel9)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Txt_contrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(Txt_telefono)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(259, 259, 259)
+                        .addComponent(Btn_Acutalizar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(jLabel1)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txt_contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(Btn_Acutalizar)
-                .addGap(70, 70, 70))
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -203,46 +174,63 @@ public class InternalActualizarUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Btn_AcutalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AcutalizarActionPerformed
-        int selectedRow = visor.getSelectedRow();
+        Usuario usuario = new Usuario();
+        Ctrl_Usuario controlUsuario = new Ctrl_Usuario();
 
-if (selectedRow == -1) {
-    JOptionPane.showMessageDialog(null, "Seleccione un usuario para actualizar.");
-    return;
-}
+        if (Txt_nombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo Nombre");
+        } else if (Txt_contrasena.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo Contraseña");
+        } else if (Txt_direccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo Dirección");
+        } else if (Txt_telefono.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo de Teléfono");
 
-String idUsuario = (String) visor.getValueAt(selectedRow, 0);
-
-int option = JOptionPane.showConfirmDialog(null, "¿Está seguro de actualizar este usuario?");
-if (option == JOptionPane.YES_OPTION) {
-
-    String nuevoDato1 = Txt_nombre.getText();
-    String nuevoDato2 = Txt_telefono.getText();
-    String nuevoDato3 = Txt_direccion.getText();
-
-    try (Connection conn = Conexion.conectar();
-         Statement st = conn.createStatement()) {
-
-        String updateSql = "UPDATE lectum.usuario SET nombre = '" + nuevoDato1 + "', telefono = '" + nuevoDato2 + "', direccion = '" + nuevoDato3 + "' WHERE id_usuario = '" + idUsuario + "'";
-        //UPDATE `lectum`.`usuario` SET `nombre` = 'r', `contrasena` = '1', `direccion` = 's', `telefono` = '0' WHERE (`id_usuario` = '2');
-        int rowsAffected = st.executeUpdate(updateSql);
-
-        if (rowsAffected > 0) {
-            // Actualización exitosa, podrías refrescar la tabla si es necesario
-            JOptionPane.showMessageDialog(null, "Usuario actualizado exitosamente.");
+        } else if (Txt_telefono.getText().length() > 10) {
+            JOptionPane.showMessageDialog(null, "El campo Teléfono deben tener 10 dígitos");
+        } else if (!Txt_telefono.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "El campo Télefono solo acepta números");
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo actualizar el usuario.");
+            usuario.setNombre(Txt_nombre.getText().trim());
+            usuario.setContrasena(Txt_contrasena.getText());
+            usuario.setDireccion(Txt_direccion.getText());
+            usuario.setTelefono(Txt_telefono.getText());
+
+            int selectedRowIndex = visor.getSelectedRow();
+            // SELECCCIONAR FILA DE LA TABLA
+            if (selectedRowIndex != -1) {
+
+                //LLAMAMOS A LA TABLA
+                DefaultTableModel model = (DefaultTableModel) visor.getModel();
+
+                //OBTENEMOS LA SELECCION DE LA TABLA 
+                int id;
+                id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
+
+                //SETIAMOS EL ID OBTENIDO
+                usuario.setIdUsuario(id);
+
+                //LLAMAMOS AL CONTROLADOR
+                if (controlUsuario.editar(usuario, id)) {
+                    JOptionPane.showMessageDialog(null, "Usuario Editado");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al editar");
+
+                }
+            }
         }
 
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al actualizar el usuario: " + e.toString());
-    }
-}
-
     }//GEN-LAST:event_Btn_AcutalizarActionPerformed
+
+    private void Txt_contrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_contrasenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Txt_contrasenaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Acutalizar;
+    private javax.swing.JTextField Txt_contrasena;
     private javax.swing.JTextField Txt_direccion;
     private javax.swing.JTextField Txt_nombre;
     private javax.swing.JTextField Txt_telefono;
@@ -250,11 +238,8 @@ if (option == JOptionPane.YES_OPTION) {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane3;
-    public javax.swing.JTable visor;
     // End of variables declaration//GEN-END:variables
-
-    
 
 }

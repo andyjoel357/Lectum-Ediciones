@@ -1,26 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package vista.InternalFrameInventario;
 
 import controlador.Ctrl_Inventario;
 import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Inventario;
 import static vista.FrmMenu.jDesktopPane_menu;
-
 import conexion.Conexion;
-
 
 /**
  *
@@ -33,7 +23,7 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
      */
     public InternalVerInventario() {
         initComponents();
-        this.setSize(new Dimension(700, 700));
+        this.setSize(new Dimension(700, 475));
         this.setTitle("Ver Inventario");
         mostrarInventario("lista_libros");
 
@@ -165,13 +155,13 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(56, 56, 56)
                 .addComponent(jButtonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
+                .addGap(103, 103, 103)
                 .addComponent(Btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addGap(71, 71, 71))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,25 +170,25 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonEditar)
-                    .addComponent(Btn_Eliminar))
-                .addContainerGap(77, Short.MAX_VALUE))
+                    .addComponent(Btn_Eliminar)
+                    .addComponent(jButtonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-mostrarInventario("lista_libros");
+        mostrarInventario("lista_libros");
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-InternalEditarLibros editar = new InternalEditarLibros();
-        jDesktopPane_menu.add(editar);
-        editar.setVisible(true);
+        InternalEditarLibros editarDetalleVenta = new InternalEditarLibros();
+        jDesktopPane_menu.add(editarDetalleVenta);
+        editarDetalleVenta.setVisible(true);
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
@@ -232,7 +222,7 @@ InternalEditarLibros editar = new InternalEditarLibros();
 
             // Get the ID of the selected book from the first column of the selected row
             int id;
-            id = Integer.parseInt(model.getValueAt(selectedRowIndex,0 ).toString());
+            id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
 
             // Remove the selected row from the JTable
             model.removeRow(selectedRowIndex);
@@ -252,8 +242,8 @@ InternalEditarLibros editar = new InternalEditarLibros();
 
         return true;
     }
-    
-     public boolean editarId() {
+
+    public boolean editarId() {
         Inventario inventario = new Inventario();
         Ctrl_Inventario controlInventario = new Ctrl_Inventario();
 
@@ -266,13 +256,12 @@ InternalEditarLibros editar = new InternalEditarLibros();
 
             // Get the ID of the selected book from the first column of the selected row
             int id;
-            id = Integer.parseInt(model.getValueAt(selectedRowIndex,0 ).toString());
+            id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
 
-           
             // Set the ID of the inventario object
             inventario.setId_libro(id);
 
-              }
+        }
 
         return true;
     }

@@ -4,7 +4,6 @@ import conexion.Conexion;
 import controlador.Ctrl_Usuario;
 import java.awt.Dimension;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -256,21 +255,21 @@ public class FrmLogin extends javax.swing.JFrame {
                     statement.setString(1, password);
                     ResultSet resultSet = statement.executeQuery();
                     if (resultSet.next()) {
-                        JOptionPane.showMessageDialog(null, "Contraseña correcta.");
+                        JOptionPane.showMessageDialog(null, "Contraseña Correcta");
                         AgregarUsuario agregar = new AgregarUsuario();
                         agregar.setVisible(true);
                         this.setVisible(false);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta.");
+                        JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
                     }
                 } catch (SQLException e) {
                     JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos: " + e.getMessage());
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacía.");
+                JOptionPane.showMessageDialog(null, "Ingrese una Contraseña");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Inicio de sesión cancelado.");
+            JOptionPane.showMessageDialog(null, "Agregar Usuario Cancelado");
         }
 
 
@@ -334,6 +333,5 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
-        //Meetodo para log button
 
 }

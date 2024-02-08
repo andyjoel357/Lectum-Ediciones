@@ -8,7 +8,7 @@ public class DetalleCabecera {
     private String fecha;
     private String direccion;
     private String ruc_ci;
-    private int telefono;
+    private String telefono;
 
     public DetalleCabecera() {
         this.id_detalleCabecera = 0;
@@ -17,10 +17,10 @@ public class DetalleCabecera {
         this.fecha = "";
         this.direccion = "";
         this.ruc_ci = "";
-        this.telefono = 0;
+        this.telefono = "";
     }
 
-    public DetalleCabecera(int id_detalleCabecera, String institucion, String cliente, String fecha, String direccion, String ruc_ci, int telefono) {
+    public DetalleCabecera(int id_detalleCabecera, String institucion, String cliente, String fecha, String direccion, String ruc_ci, String telefono) {
         this.id_detalleCabecera = id_detalleCabecera;
         this.institucion = institucion;
         this.cliente = cliente;
@@ -79,11 +79,11 @@ public class DetalleCabecera {
         this.ruc_ci = ruc_ci;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

@@ -8,7 +8,7 @@ public class Inventario {
     private int numero_paginas;
     private String codigo;
     private String stock;
-    private int precioU;
+    private double precioU;
 
     public Inventario() {
         this.id_libro = 0;
@@ -17,10 +17,10 @@ public class Inventario {
         this.numero_paginas = 0;
         this.codigo = "";
         this.stock = "";
-        this.precioU = 0;
+        this.precioU = 0.0;
     }
 
-    public Inventario(int id_libro, String titulo, String autor, int numero_paginas, String codigo, String stock, int precioU) {
+    public Inventario(int id_libro, String titulo, String autor, int numero_paginas, String codigo, String stock, double precioU) {
         this.id_libro = id_libro;
         this.titulo = titulo;
         this.autor = autor;
@@ -30,11 +30,11 @@ public class Inventario {
         this.precioU = precioU;
     }
 
-    public int getPrecioU() {
+    public double getPrecioU() {
         return precioU;
     }
 
-    public void setPrecioU(int precioU) {
+    public void setPrecioU(double precioU) {
         this.precioU = precioU;
     }
 
