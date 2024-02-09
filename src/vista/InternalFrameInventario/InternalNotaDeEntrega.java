@@ -16,6 +16,7 @@ import modelo.DetalleCabecera;
 import modelo.DetalleVenta;
 import java.sql.PreparedStatement;
 
+
 /**
  *
  * @author este1
@@ -27,6 +28,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
 
     //DECLARAR LISTA DE LOS PRODUCTOS
     ArrayList<DetalleVenta> listaLibros = new ArrayList<>();
+
     private DetalleVenta libro;
 
     //Lista para el detalle de venta de los productos
@@ -34,17 +36,17 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
     private int id_libro = 0;
     private String titulo = "";
     private int stock = 0;
-    private int precioU = 0;
+    private double precioU = 0.0;
 
     //DETALLE
     private int cantidad = 0;
-    private int subtotal = 0;
+    private double subtotal = 0.0;
     private int descuento = 0;
-    private int total = 0;
+    private double total = 0.0;
 
     //TOTAL
-    private int subtotalGeneral = 0;
-    private int totalGeneral = 0;
+    private double subtotalGeneral = 0.0;
+    private double totalGeneral = 0.0;
 
     //Numero detalle
     private int auxIdDetalle = 1;
@@ -57,7 +59,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         initComponents();
 
         this.setSize(new Dimension(800, 700));
-        this.setTitle("Nota de Entrega");
+        this.setTitle("Nota de Venta");
 
         //CArgar productos en el COMBO BOX
         this.cargarLibros();
@@ -86,7 +88,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
     }
 
     //METODO PRESENTAR LA INFORMACION EN LA TABLA DETALLEVENTA
-    private void listaTabla() {
+    public void listaTabla() {
         this.modeloDatosLibros.setRowCount(listaLibros.size());
         for (int i = 0; i < listaLibros.size(); i++) {
             this.modeloDatosLibros.setValueAt(i + 1, i, 0);
@@ -152,13 +154,13 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jTextTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 80, -1));
+        getContentPane().add(jTextTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 170, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel9.setText("VENTA AL POR MAYOR Y MENOR DE LIBROS");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
-        getContentPane().add(jTextBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 100, -1));
+        getContentPane().add(jTextBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 120, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -170,13 +172,13 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("Cantidad:");
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 80, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 260, 80, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Institución:");
         jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 80, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 80, -1));
 
         jButton1.setBackground(new java.awt.Color(51, 255, 204));
         jButton1.setText("REGISTRAR");
@@ -196,11 +198,11 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("Cliente:");
         jLabel16.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 80, -1));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 80, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logo_Pequeño.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, 180, 140));
-        getContentPane().add(jTextCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 80, -1));
+        getContentPane().add(jTextCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 120, -1));
 
         jComboBoxLibro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxLibro.addActionListener(new java.awt.event.ActionListener() {
@@ -208,7 +210,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                 jComboBoxLibroActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 110, -1));
+        getContentPane().add(jComboBoxLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 260, 120, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -231,6 +233,12 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 80, -1));
         jPanel2.add(jTextTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 90, -1));
+
+        jTextSubtotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextSubtotalActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 90, -1));
 
         jTextDescuento.addActionListener(new java.awt.event.ActionListener() {
@@ -246,9 +254,9 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Telefono:");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 80, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 80, -1));
         getContentPane().add(jLabelNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, 90, 20));
-        getContentPane().add(jTextDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 80, -1));
+        getContentPane().add(jTextDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 170, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel12.setText("Telefono: 0999930173");
@@ -259,10 +267,10 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Dirección:");
         jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 80, -1));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 80, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("NOTA DE ENTREGA");
+        jLabel7.setText("NOTA DE VENTA");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, -1, -1));
 
@@ -270,14 +278,20 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("Libro:");
         jLabel19.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 80, -1));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setText("QUITO - ECUADOR");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
-        getContentPane().add(jTextInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 110, -1));
-        getContentPane().add(jTextCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 110, -1));
+
+        jTextInstitucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextInstitucionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 170, -1));
+        getContentPane().add(jTextCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 170, -1));
 
         jButtonBuscar.setBackground(new java.awt.Color(204, 255, 255));
         jButtonBuscar.setText("Buscar");
@@ -286,7 +300,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                 jButtonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
+        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 260, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 102));
         jButton4.setText("Añadir Producto");
@@ -295,14 +309,14 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(635, 260, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("RUC/CI:");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 80, -1));
-        getContentPane().add(jTextRucCi, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, 80, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 80, -1));
+        getContentPane().add(jTextRucCi, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 170, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -318,6 +332,11 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableLibros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableLibrosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableLibros);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 675, 100));
@@ -344,7 +363,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 880, -1));
 
         jLabel_wallpaper.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 670));
+        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 820, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -359,102 +378,89 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         Date date = new Date();
         fechaActual = new SimpleDateFormat("yyyy/MM/dd").format(date);
 
-        if (!jTextInstitucion.getText().isEmpty()) {
-            if (!jTextCliente.getText().isEmpty()) {
-                if (!jTextDireccion.getText().isEmpty()) {
-                    if (!jTextRucCi.getText().isEmpty()) {
-                        if (!jTextTelefono.getText().isEmpty()) {
+        if (jTextInstitucion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo Institución");
+        } else if (jTextCliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo Cliente");
+        } else if (jTextDireccion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo Dirección");
+        } else if (jTextRucCi.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo Ruc / Ci");
+        } else if (jTextRucCi.getText().length() > 13) {
+            JOptionPane.showMessageDialog(null, "El campo Ruc / Ci debe tener 13 dígitos");
+        } else if (!jTextRucCi.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "El campo Ruc / Ci solo acepta números");
+        } else if (jTextTelefono.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo Teléfono");
+        } else if (jTextTelefono.getText().length() > 10) {
+            JOptionPane.showMessageDialog(null, "El campo Teléfono debe tener 10 dígitos");
+        } else if (!jTextTelefono.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "El campo Teléfono solo acepta números");
+        } else if (listaLibros.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Agregue al menos un Producto");
+        } else if (jTextDescuento.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Llene el campo Descuento");
+        } else if (!jTextDescuento.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "El campo Descuento solo acepta números");
 
-                            if (listaLibros.size() > 0) {
+        } else {
+            // REGISTRAR cabecera
+            detalleCabecera.setId_detalleCabecera(0);
+            detalleCabecera.setInstitucion(jTextInstitucion.getText());
+            detalleCabecera.setCliente(jTextCliente.getText());
+            detalleCabecera.setDireccion(jTextDireccion.getText());
+            detalleCabecera.setRuc_ci(jTextRucCi.getText());
+            detalleCabecera.setTelefono(jTextTelefono.getText());
+            detalleCabecera.setFecha(fechaActual);
 
-                                if (!jTextDescuento.getText().isEmpty()) {
+            if (controlVenta.guardarCabezera(detalleCabecera)) {
+                // Obtener id del dato guardado
+                this.idDetalleVenta();
+                JOptionPane.showMessageDialog(null, "Venta Registrada");
 
-                                    //REGISTRAR cabecera
-                                    detalleCabecera.setId_detalleCabecera(0);
-                                    detalleCabecera.setInstitucion(jTextInstitucion.getText());
-                                    detalleCabecera.setCliente(jTextCliente.getText());
-                                    detalleCabecera.setDireccion(jTextDireccion.getText());
-                                    detalleCabecera.setRuc_ci(jTextRucCi.getText());
-                                    detalleCabecera.setTelefono(Integer.parseInt(jTextTelefono.getText()));
-                                    detalleCabecera.setFecha(fechaActual);
+                // Generar PDF
+                VentaPDF pdf = new VentaPDF();
+                pdf.Datos(idDatos);
+                pdf.generarPDF();
 
-                                    if (controlVenta.guardarCabezera(detalleCabecera)) {
-                                        //Obtener id del dato guardado
-                                        this.idDetalleVenta();
-                                        JOptionPane.showMessageDialog(null, "Venta Registrada");
+                // GUARDAR DETALLE
+                for (DetalleVenta elemento : listaLibros) {
+                    detalleVenta.setId_detalleVenta(0);
+                    detalleVenta.setId_detalleCabecera(0);
+                    detalleVenta.setId_libro(elemento.getId_libro());
+                    detalleVenta.setCantidad(elemento.getCantidad());
+                    detalleVenta.setPrecioU(elemento.getPrecioU());
+                    detalleVenta.setSubtotal(elemento.getSubtotal());
+                    detalleVenta.setDescuento(Integer.parseInt(jTextDescuento.getText()));
+                    detalleVenta.setTotal(Integer.parseInt(jTextTotal.getText()));
 
-                                        //generar pdfffffffff
-                                        VentaPDF pdf = new VentaPDF();
+                    if (controlVenta.guardarDetalle(detalleVenta)) {
+                        // RESETEAR CAMPOS
+                        jTextInstitucion.setText("");
+                        jTextCliente.setText("");
+                        jTextDireccion.setText("");
+                        jTextRucCi.setText("");
+                        jTextTelefono.setText("");
+                        jTextSubtotal.setText("");
+                        jTextDescuento.setText("");
+                        jTextTotal.setText("");
 
-                                        pdf.Datos(idDatos);
-                                        pdf.generarPDF();
-
-                                        //GUARDAR DETALLE
-                                        for (DetalleVenta elemento : listaLibros) {
-
-                                            detalleVenta.setId_detalleVenta(0);
-                                            detalleVenta.setId_detalleCabecera(0);
-                                            detalleVenta.setId_libro(elemento.getId_libro());
-                                            detalleVenta.setCantidad(elemento.getCantidad());
-                                            detalleVenta.setPrecioU(elemento.getPrecioU());
-                                            detalleVenta.setSubtotal(elemento.getSubtotal());
-                                            detalleVenta.setDescuento(Integer.parseInt(jTextDescuento.getText()));
-                                            detalleVenta.setTotal(Integer.parseInt(jTextTotal.getText()));
-
-                                            if (controlVenta.guardarDetalle(detalleVenta)) {
-
-                                                //System.out.println("SE HA REGISTRADO LA VENTA");
-                                                //RESETEAR CAMPOS
-                                                jTextInstitucion.setText("");
-                                                jTextCliente.setText("");
-                                                jTextDireccion.setText("");
-                                                jTextRucCi.setText("");
-                                                jTextTelefono.setText("");
-                                                jTextSubtotal.setText("");
-                                                jTextDescuento.setText("");
-                                                jTextTotal.setText("");
-
-                                                this.RestarStock(elemento.getId_libro(), elemento.getCantidad());
-
-                                            } else {
-                                                JOptionPane.showMessageDialog(null, "Error al guardar detalle");
-                                            }
-
-                                        }
-                                        //LIMPIAR LISTA
-                                        listaLibros.clear();
-                                        listaTabla();
-
-                                    } else {
-
-                                        JOptionPane.showMessageDialog(null, "Error al guardar cabezera");
-                                    }
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "Ingrese el descuento");
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Agrege un producto");
-                            }
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Llene el campo de telefono");
-                        }
-
+                        // RESTAR STOCK
+                        this.RestarStock(elemento.getId_libro(), elemento.getCantidad());
                     } else {
-                        JOptionPane.showMessageDialog(null, "Llene el campo de Ruc/Ci");
+                        JOptionPane.showMessageDialog(null, "Error al guardar detalle");
                     }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Llene el campo de direccion");
-
                 }
 
+                // LIMPIAR LISTA
+                listaLibros.clear();
+                listaTabla();
+
             } else {
-                JOptionPane.showMessageDialog(null, "Llene el cliente");
+                JOptionPane.showMessageDialog(null, "Error al guardar cabezera");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "LLENE LA INSTITUCION");
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -506,9 +512,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
             //VALIDAR QUE INGRESE CANTIDAD
             if (!jTextCantidad.getText().isEmpty()) {
 
-                // VALIDAR QUE NO INGRESE CARACTERES
-                boolean validacion = validar(jTextCantidad.getText());
-                if (validacion == true) {
+                if (jTextCantidad.getText().matches("\\d+")) {
 
                     if (Integer.parseInt(jTextCantidad.getText()) > 0) {
 
@@ -520,7 +524,8 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                         //LA CANTIDAD SELECCIONADA NO SEA MAYOR A LA BASE DE DATOS
                         if (cantidad <= stock) {
                             subtotal = precioU * cantidad;
-                            total = subtotal - descuento;
+                            subtotal = (double) Math.round(subtotal * 100) / 100;
+                            total = subtotal;
 
                             //SE CREA UN  NUEVO PRODUCTO
                             libro = new DetalleVenta(auxIdDetalle,
@@ -542,9 +547,10 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                             //VOLVER A CARGAR COMBO PRODCUTO
                             this.cargarLibros();
                             this.calcularTotal();
+                            jTextDescuento.setText("");
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "La cantidad supera stock actual: " + stock);
+                            JOptionPane.showMessageDialog(null, "La cantidad supera Stock Actual: " + stock);
                         }
 
                     } else {
@@ -553,11 +559,11 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "En cantidad solo se permiten numeros");
+                    JOptionPane.showMessageDialog(null, "El campo Cantidad solo acepta números");
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Ingrese Cantidad de producto");
+                JOptionPane.showMessageDialog(null, "Llene el campo Cantidad");
             }
 
         }
@@ -574,14 +580,36 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextDescuentoActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.Eliminar();
 
+        this.Eliminar();
+        jTextDescuento.setText("");
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       this.Actualizar();
+
+        editarD();
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextInstitucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextInstitucionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextInstitucionActionPerformed
+
+    private void jTextSubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextSubtotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextSubtotalActionPerformed
+
+    private void jTableLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLibrosMouseClicked
+        int selectedRowIndex = jTableLibros.getSelectedRow();
+        int idArray = (int) jTableLibros.getValueAt(selectedRowIndex, 0);
+        int ca = listaLibros.get(idArray - 1).getCantidad();
+        String titulo = listaLibros.get(idArray - 1).getTitulo();
+        jTextCantidad.setText(String.valueOf(ca));
+        jComboBoxLibro.setSelectedItem(titulo);
+
+
+    }//GEN-LAST:event_jTableLibrosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -627,6 +655,59 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField jTextTotal;
     // End of variables declaration//GEN-END:variables
 
+    //editar
+    public void editarD() {
+
+        int idArray = 0;
+        int selectedRowIndex = jTableLibros.getSelectedRow();
+
+        // If a row is selected
+        if (selectedRowIndex != -1) {
+            String titulo = jComboBoxLibro.getSelectedItem().toString();
+            int cant = Integer.parseInt(jTextCantidad.getText());
+            
+            if (cant <= stock) {
+                idArray = (int) jTableLibros.getValueAt(selectedRowIndex, 0);
+                int option = JOptionPane.showConfirmDialog(null, "Esta Seguro de Editar este Libro?", "!ADVERTENCIA!", JOptionPane.YES_NO_OPTION);
+                
+                switch (option) {
+                    case 0://Si
+                        listaLibros.get(idArray - 1).setTitulo(titulo);
+                        listaLibros.get(idArray - 1).setCantidad(cant);
+                        subtotal = precioU * cant;
+                        subtotal = (double) Math.round(subtotal * 100) / 100;
+                        listaLibros.get(idArray - 1).setSubtotal(subtotal);
+                        total = subtotal;
+                        listaLibros.get(idArray - 1).setTotal(total);
+                        calcularTotal();
+                        listaTabla();
+
+                        //limpiar campos
+                        jTextCantidad.setText("");
+                        jComboBoxLibro.setSelectedItem("Seleccione Libro:");
+                        break;
+                    case 1:
+                        jTableLibros.clearSelection();
+                        //limpiar campos
+                        jTextCantidad.setText("");
+                        jComboBoxLibro.setSelectedItem("Seleccione Libro:");
+                        break;
+                    default:
+                        jTableLibros.clearSelection();
+                        //limpiar campos
+                        jTextCantidad.setText("");
+                        jComboBoxLibro.setSelectedItem("Seleccione Libro:");
+                        break;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "La cantidad supera Stock Actual: " + stock);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un Item");
+        }
+
+    }
+
     //obtener id del ultimo detalle de cabezera registrada
     private void idDetalleVenta() {
 
@@ -670,16 +751,6 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         }
     }
 
-    //METODO VALIDAR NO CARACTERES 
-    private boolean validar(String valor) {
-        try {
-            int num = Integer.parseInt(valor);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
     //MOSTRAR LOS PRODUCTOS
     private void DatosDelProducto() {
 
@@ -694,7 +765,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                 id_libro = rs.getInt("id_libro");
                 titulo = rs.getString("titulo");
                 stock = rs.getInt("stock");
-                precioU = rs.getInt("precioU");
+                precioU = rs.getDouble("precioU");
 
             }
 
@@ -704,66 +775,75 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
     }
     //METODO CALCULAR TOTAL A PAGAR
 
-    private void calcularTotal() {
+    public void calcularTotal() {
 
         subtotalGeneral = 0;
         totalGeneral = 0;
 
         for (DetalleVenta elemento : listaLibros) {
             subtotalGeneral += elemento.getSubtotal();
+            subtotalGeneral = (double) Math.round(subtotalGeneral * 100) / 100;
             totalGeneral += elemento.getTotal();
+            totalGeneral = (double) Math.round(totalGeneral * 100) / 100;
         }
 
         jTextSubtotal.setText(String.valueOf(subtotalGeneral));
         jTextTotal.setText(String.valueOf(totalGeneral));
 
     }
-    
-    
-     //Ectualizar tabla de tabla
-     private void Actualizar(){
-         
-         //EN PROCESO
-   }
-    
-   //Eliminar de tabla
-    
-    private void Eliminar(){
-        int idArray =0;
+
+    //Eliminar de tabla
+    private void Eliminar() {
+        int idArray = 0;
         int selectedRowIndex = jTableLibros.getSelectedRow();
 
         // If a row is selected
         if (selectedRowIndex != -1) {
-        idArray = (int )modeloDatosLibros.getValueAt(selectedRowIndex, 0);
-        }
-        int option=JOptionPane.showConfirmDialog(null, "Esta Seguro de eliminar este libro?");
+            idArray = (int) modeloDatosLibros.getValueAt(selectedRowIndex, 0);
+            int option = JOptionPane.showConfirmDialog(null, "Esta Seguro de Eliminar este Libro?", "!ADVERTENCIA!", JOptionPane.YES_NO_OPTION);
 
-        switch (option) {
-            case 0://Si
-                listaLibros.remove(idArray-1);
-                this.calcularTotal();
-                this.listaTabla();
-                break;  
-            case 1://No          
-                break;
-            default:
-                break;
+            switch (option) {
+                case 0://Si
+                    listaLibros.remove(idArray - 1);
+                    modeloDatosLibros.removeRow(selectedRowIndex);
+                    this.calcularTotal();
+                    //limpiar campos
+                    jTextCantidad.setText("");
+                    jComboBoxLibro.setSelectedItem("Seleccione Libro:");
+                    break;
+                case 1://No 
+                    jTableLibros.clearSelection();
+                    //limpiar campos
+                    jTextCantidad.setText("");
+                    jComboBoxLibro.setSelectedItem("Seleccione Libro:");
+                    break;
+                default:
+                    jTableLibros.clearSelection();
+                    //limpiar campos
+                    jTextCantidad.setText("");
+                    jComboBoxLibro.setSelectedItem("Seleccione Libro:");
+                    break;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un Item");
         }
+
     }
-    
+
     // Descuento
     private void Descuento() {
 
-        int valorDescuento;
-        int valorActual;
-        int totalDescuento;
+        double valorDescuento;
+        double valorActual;
+        double totalDescuento;
 
         if (jTextDescuento.getText().equals("")) {
             jTextTotal.setText(jTextSubtotal.getText());
         } else {
-            valorActual = Integer.parseInt(jTextSubtotal.getText());
-            valorDescuento = Integer.parseInt(jTextDescuento.getText());
+            valorActual = Double.parseDouble(jTextSubtotal.getText());
+            valorDescuento = Double.parseDouble(jTextDescuento.getText());
             totalDescuento = valorActual - (valorActual) * valorDescuento / 100;
+            totalDescuento = (double) Math.round(totalDescuento * 100) / 100;
             jTextTotal.setText(String.valueOf(totalDescuento));
         }
 
@@ -797,7 +877,6 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
             int stockNueva = stock - cantidad;
             consulta.setInt(1, stockNueva);
             if (consulta.executeUpdate() > 0) {
-                System.out.println("Se actulizo");
 
             }
             cn.close();

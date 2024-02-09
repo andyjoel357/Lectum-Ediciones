@@ -213,6 +213,7 @@ public class InternalActualizarUsuario extends javax.swing.JInternalFrame {
                 //LLAMAMOS AL CONTROLADOR
                 if (controlUsuario.editar(usuario, id)) {
                     JOptionPane.showMessageDialog(null, "Usuario Editado");
+                    visor.clearSelection();
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al editar");

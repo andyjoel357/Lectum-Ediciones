@@ -1,6 +1,5 @@
  package controlador;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -90,7 +89,7 @@ public boolean editar(Inventario objeto, int id) {
         return respuesta;
 
     }
-
+    
     
     //SI SE REQUIERE CONSULTAR CATEGORIA
     

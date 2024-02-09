@@ -183,16 +183,42 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
         mostrarInventario("lista_libros");
+        JOptionPane.showMessageDialog(null,"Tabla Actualizada");
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        InternalEditarLibros editarDetalleVenta = new InternalEditarLibros();
-        jDesktopPane_menu.add(editarDetalleVenta);
-        editarDetalleVenta.setVisible(true);
+        int selectedRowIndex = visor.getSelectedRow();
+        if (selectedRowIndex != -1) {
+            InternalEditarLibros editarlibro = new InternalEditarLibros();
+            jDesktopPane_menu.add(editarlibro);
+            editarlibro.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un Registro para Editar");
+        }
+
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
-        eliminarInventario();
+        int selectedRowIndex = visor.getSelectedRow();
+        if (selectedRowIndex != -1) {
+            int option = JOptionPane.showConfirmDialog(null, "Esta Seguro de Eliminar este Libro?", "!ADVERTENCIA!", JOptionPane.YES_NO_OPTION);
+
+            switch (option) {
+                case 0://Si
+                    eliminarInventario();
+                    break;
+                case 1:
+                    visor.clearSelection();
+                    break;
+                default:
+                    visor.clearSelection();
+                    break;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un Registro para Eliminar");
+        }
+
+
     }//GEN-LAST:event_Btn_EliminarActionPerformed
 
     private void visorComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_visorComponentRemoved
@@ -210,34 +236,29 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public boolean eliminarInventario() {
+        int selectedRowIndex = visor.getSelectedRow();
         Inventario inventario = new Inventario();
         Ctrl_Inventario controlInventario = new Ctrl_Inventario();
 
-        int selectedRowIndex = visor.getSelectedRow();
-
         // If a row is selected
-        if (selectedRowIndex != -1) {
-            // Get the DefaultTableModel from the JTable
-            DefaultTableModel model = (DefaultTableModel) visor.getModel();
+        // Get the DefaultTableModel from the JTable
+        DefaultTableModel model = (DefaultTableModel) visor.getModel();
 
-            // Get the ID of the selected book from the first column of the selected row
-            int id;
-            id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
+        // Get the ID of the selected book from the first column of the selected row
+        int id;
+        id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
 
-            // Remove the selected row from the JTable
-            model.removeRow(selectedRowIndex);
+        // Remove the selected row from the JTable
+        model.removeRow(selectedRowIndex);
 
-            // Set the ID of the inventario object
-            inventario.setId_libro(id);
+        // Set the ID of the inventario object
+        inventario.setId_libro(id);
 
-            // Delete the inventario object from the database
-            if (controlInventario.eliminar(inventario, id)) {
-                JOptionPane.showMessageDialog(null, "Error al eliminar");
-            } else {
-                JOptionPane.showMessageDialog(null, "Libro eliminado");
-            }
+        // Delete the inventario object from the database
+        if (controlInventario.eliminar(inventario, id)) {
+            JOptionPane.showMessageDialog(null, "Error al eliminar");
         } else {
-            JOptionPane.showMessageDialog(null, "Por favor, seleccione un registro para eliminar");
+            JOptionPane.showMessageDialog(null, "Libro eliminado");
         }
 
         return true;

@@ -275,13 +275,18 @@ public class InternalEditarLibros extends javax.swing.JInternalFrame {
                             //LLAMAMOS AL CONTROLADOR
                             if (controlinventario.editar(inventario, id)) {
                                 JOptionPane.showMessageDialog(null, "Libro Editado");
+                                visor.clearSelection();
                                 this.dispose();
                             } else {
                                 JOptionPane.showMessageDialog(null, "Error al editar");
-
+                                
+                                
                             }
                         }
-                    }}}}
+                    }
+                }
+            }
+        }
 
     }//GEN-LAST:event_Btn_EditarActionPerformed
 
