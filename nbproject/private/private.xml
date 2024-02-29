@@ -4,18 +4,23 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/controlador/Ctrl_RegistrarVenta.java</file>
+            <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/modelo/DetalleCabecera.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/controlador/Ctrl_Usuario.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/vista/AgregarUsuario.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalVerUsuarios.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalAgregarLibros.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalActualizarUsuario.java</file>
+            <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/conexion/Conexion.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalVerInventario.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalNotaDeEntrega.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/vista/FrmMenu.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalEditarLibros.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/controlador/VentaPDF.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/controlador/Ctrl_Inventario.java</file>
+            <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/modelo/DetalleVenta.java</file>
             <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/vista/InternalFrameInventario/InternalNotaDeVenta.java</file>
+            <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/controlador/EntregaPDF.java</file>
+            <file>file:/C:/Users/este1/Desktop/Hola/Lectum-Ediciones/src/controlador/Ctrl_RegistrarEntrega.java</file>
         </group>
     </open-files>
 </project-private>

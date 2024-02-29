@@ -9,7 +9,7 @@ import modelo.DetalleVenta;
 import java.sql.ResultSet;
 
 
-public class Ctrl_RegistrarVenta {
+public class Ctrl_RegistrarEntrega {
     
     public static int idCabeceraRegistrada;
     java.math.BigDecimal idColVar;
@@ -22,7 +22,7 @@ public class Ctrl_RegistrarVenta {
         Connection cn = conexion.Conexion.conectar();
         
         try {
-            PreparedStatement consulta = cn.prepareStatement("insert into cabeceraVenta values(?,?,?,?,?,?,?)",
+            PreparedStatement consulta = cn.prepareStatement("insert into cabeceraEntrega values(?,?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             
             consulta.setInt(1, 0);
@@ -46,7 +46,7 @@ public class Ctrl_RegistrarVenta {
             cn.close();
 
         } catch (SQLException e) {
-            System.out.println("Error al registrar cabecera de venta " + e);
+            System.out.println("Error al registrar cabecera de entrega " + e);
         }
 
         return respuesta;
@@ -60,7 +60,7 @@ public class Ctrl_RegistrarVenta {
         Connection cn = conexion.Conexion.conectar();
         
         try {
-            PreparedStatement consulta = cn.prepareStatement("insert detalleVenta values(?,?,?,?,?,?,?,?)");
+            PreparedStatement consulta = cn.prepareStatement("insert detalleEntrega values(?,?,?,?,?,?,?,?)");
             consulta.setInt(1, 0);
             consulta.setInt(2, idCabeceraRegistrada);
             consulta.setInt(3, objeto.getId_libro());
@@ -80,7 +80,7 @@ public class Ctrl_RegistrarVenta {
             cn.close();
 
         } catch (SQLException e) {
-            System.out.println("Error al guardar detalle de venta " + e);
+            System.out.println("Error al guardar detalle de entrega " + e);
         }
 
         return respuesta;

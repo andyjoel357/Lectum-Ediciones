@@ -432,7 +432,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                     detalleVenta.setPrecioU(elemento.getPrecioU());
                     detalleVenta.setSubtotal(elemento.getSubtotal());
                     detalleVenta.setDescuento(Integer.parseInt(jTextDescuento.getText()));
-                    detalleVenta.setTotal(Integer.parseInt(jTextTotal.getText()));
+                    detalleVenta.setTotal(Double.parseDouble(jTextTotal.getText()) );
 
                     if (controlVenta.guardarDetalle(detalleVenta)) {
                         // RESETEAR CAMPOS

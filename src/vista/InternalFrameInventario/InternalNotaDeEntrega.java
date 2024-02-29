@@ -1,6 +1,7 @@
 package vista.InternalFrameInventario;
 
-import controlador.Ctrl_RegistrarVenta;
+import controlador.Ctrl_RegistrarEntrega;
+import controlador.EntregaPDF;
 import controlador.VentaPDF;
 import java.awt.Dimension;
 import java.sql.Connection;
@@ -270,7 +271,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 80, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("NOTA DE VENTA");
+        jLabel7.setText("NOTA DE ENTREGA");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, -1, -1));
 
@@ -372,7 +373,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
 
         DetalleCabecera detalleCabecera = new DetalleCabecera();
         DetalleVenta detalleVenta = new DetalleVenta();
-        Ctrl_RegistrarVenta controlVenta = new Ctrl_RegistrarVenta();
+        Ctrl_RegistrarEntrega controlVenta = new Ctrl_RegistrarEntrega();
 
         String fechaActual = "";
         Date date = new Date();
@@ -419,7 +420,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Venta Registrada");
 
                 // Generar PDF
-                VentaPDF pdf = new VentaPDF();
+                EntregaPDF pdf = new EntregaPDF();
                 pdf.Datos(idDatos);
                 pdf.generarPDF();
 
@@ -432,7 +433,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                     detalleVenta.setPrecioU(elemento.getPrecioU());
                     detalleVenta.setSubtotal(elemento.getSubtotal());
                     detalleVenta.setDescuento(Integer.parseInt(jTextDescuento.getText()));
-                    detalleVenta.setTotal(Integer.parseInt(jTextTotal.getText()));
+                    detalleVenta.setTotal(Double.parseDouble(jTextTotal.getText()));
 
                     if (controlVenta.guardarDetalle(detalleVenta)) {
                         // RESETEAR CAMPOS
@@ -713,7 +714,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
 
         try {
             Connection cn = conexion.Conexion.conectar();
-            String sql = "SELECT * FROM cabeceraventa ORDER BY id_detalleCabecera DESC LIMIT 1";
+            String sql = "SELECT * FROM cabeceraEntrega ORDER BY id_detalleCabecera DESC LIMIT 1";
             Statement st;
             st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
