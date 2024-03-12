@@ -300,7 +300,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                 jButtonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 260, -1, -1));
+        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 102));
         jButton4.setText("Añadir Producto");
@@ -363,7 +363,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 880, -1));
 
         jLabel_wallpaper.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 820, 670));
+        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 820, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -432,7 +432,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                     detalleVenta.setPrecioU(elemento.getPrecioU());
                     detalleVenta.setSubtotal(elemento.getSubtotal());
                     detalleVenta.setDescuento(Integer.parseInt(jTextDescuento.getText()));
-                    detalleVenta.setTotal(Double.parseDouble(jTextTotal.getText()) );
+                    detalleVenta.setTotal(Double.parseDouble(jTextTotal.getText()));
 
                     if (controlVenta.guardarDetalle(detalleVenta)) {
                         // RESETEAR CAMPOS
@@ -617,8 +617,6 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JComboBox<String> jComboBoxLibro;
     private javax.swing.JLabel jLabel1;
@@ -740,6 +738,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
             ResultSet rs = st.executeQuery(sql);
             jComboBoxLibro.removeAllItems();
             jComboBoxLibro.addItem("Seleccione Libro:");
+            
             while (rs.next()) {
                 jComboBoxLibro.addItem(rs.getString("titulo"));
             }

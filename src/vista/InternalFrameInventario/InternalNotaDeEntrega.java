@@ -2,7 +2,6 @@ package vista.InternalFrameInventario;
 
 import controlador.Ctrl_RegistrarEntrega;
 import controlador.EntregaPDF;
-import controlador.VentaPDF;
 import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -134,7 +133,6 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jLabelNumero = new javax.swing.JLabel();
         jTextDireccion = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -150,6 +148,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel20 = new javax.swing.JLabel();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
@@ -264,12 +263,6 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
         jLabel12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 55, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setText("Dirección:");
-        jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 80, -1));
-
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("NOTA DE ENTREGA");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -301,7 +294,7 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
                 jButtonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(335, 260, -1, -1));
+        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 102));
         jButton4.setText("Añadir Producto");
@@ -362,6 +355,12 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 700, 150));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 880, -1));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel20.setText("Dirección:");
+        jLabel20.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 80, -1));
 
         jLabel_wallpaper.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 820, 670));
@@ -625,12 +624,12 @@ public class InternalNotaDeEntrega extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

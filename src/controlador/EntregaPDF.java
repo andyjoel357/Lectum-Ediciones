@@ -78,7 +78,7 @@ public class EntregaPDF {
 
             }
 
-            nombrePDF = "Venta_" + cliente + "_" + fechaN + ".pdf";
+            nombrePDF = "Entrega_" + cliente + "_" + fechaN + ".pdf";
 
             FileOutputStream archivo;
             File file = new File("src/pdf/" + nombrePDF);

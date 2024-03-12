@@ -1,6 +1,5 @@
 package vista.InternalFrameInventario;
 
-import controlador.Ctrl_Inventario;
 import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,24 +7,31 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Inventario;
-import static vista.FrmMenu.jDesktopPane_menu;
 import conexion.Conexion;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 
 /**
  *
  * @author Andy_T - @edit AndyJP
  */
-public class InternalVerInventario extends javax.swing.JInternalFrame {
+public class InternalRegistroVenta extends javax.swing.JInternalFrame {
+    
+      private String nombrePDF = "";
+      
+      private String fecha = "";
+      
+      private String cliente;
 
     /**
      * Creates new form InternalVerInventario
      */
-    public InternalVerInventario() {
+    public InternalRegistroVenta() {
         initComponents();
         this.setSize(new Dimension(700, 475));
-        this.setTitle("Ver Inventario");
-        mostrarInventario("lista_libros");
+        this.setTitle("Registro Nota de Venta");
+        mostrarInventario("cabeceraVenta");
 
     }
 
@@ -37,12 +43,12 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
-        model.addColumn("Titulo");
-        model.addColumn("Autor");
-        model.addColumn("Numero de Paginas");
-        model.addColumn("Codigo");
-        model.addColumn("Stock");
-        model.addColumn("Precio Unitario");
+        model.addColumn("Institución");
+        model.addColumn("Cliente");
+        model.addColumn("Fecha");
+        model.addColumn("Dirección");
+        model.addColumn("Ruc / Ci");
+        model.addColumn("Telefono");
 
         visor.setModel(model);
 
@@ -76,9 +82,7 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         visor = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButtonActualizar = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
-        Btn_Eliminar = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -114,29 +118,13 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(visor);
 
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 2, 48)); // NOI18N
-        jLabel1.setText("Inventario");
-
-        jButtonActualizar.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
-        jButtonActualizar.setText("Actualizar");
-        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonActualizarActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Registro Nota de venta");
 
         jButtonEditar.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
-        jButtonEditar.setText("Editar");
+        jButtonEditar.setText("Ver");
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEditarActionPerformed(evt);
-            }
-        });
-
-        Btn_Eliminar.setFont(new java.awt.Font("Segoe UI Light", 3, 18)); // NOI18N
-        Btn_Eliminar.setText("Eliminar");
-        Btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_EliminarActionPerformed(evt);
             }
         });
 
@@ -145,81 +133,65 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jButtonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(56, 301, Short.MAX_VALUE)
                 .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103)
-                .addComponent(Btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addGap(285, 285, 285))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEditar)
-                    .addComponent(Btn_Eliminar)
-                    .addComponent(jButtonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButtonEditar)
                 .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-        mostrarInventario("lista_libros");
-        JOptionPane.showMessageDialog(null,"Tabla Actualizada");
-    }//GEN-LAST:event_jButtonActualizarActionPerformed
-
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         int selectedRowIndex = visor.getSelectedRow();
-        if (selectedRowIndex != -1) {
-            InternalEditarLibros editarlibro = new InternalEditarLibros();
-            jDesktopPane_menu.add(editarlibro);
-            editarlibro.setVisible(true);
+       if (selectedRowIndex != -1) {
+              DefaultTableModel model = (DefaultTableModel) visor.getModel();
+              
+             cliente = model.getValueAt(selectedRowIndex, 2).toString();
+             fecha = model.getValueAt(selectedRowIndex, 3).toString();
+             
+             
+              String fechaN = "";
+            for (int i = 0; i < fecha.length(); i++) {
+                if (fecha.charAt(i) == '/') {
+                    fechaN = fecha.replace("/", "_");
+                }
+
+            }
+             
+              nombrePDF = "Venta_" + cliente + "_" + fechaN + ".pdf";
+             
+             
+             try {
+             
+             File file = new File("src/pdf/" + nombrePDF);
+             Desktop.getDesktop().open(file);
+             } catch (IOException e) {
+             System.out.println("ERROR AL ABRIR NOTA DE VENTA " + e);
+        }
+              
         } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un Registro para Editar");
+            JOptionPane.showMessageDialog(null, "Seleccione un Registro para Ver");
         }
 
     }//GEN-LAST:event_jButtonEditarActionPerformed
-
-    private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
-        int selectedRowIndex = visor.getSelectedRow();
-        if (selectedRowIndex != -1) {
-            int option = JOptionPane.showConfirmDialog(null, "Esta Seguro de Eliminar este Libro?", "!ADVERTENCIA!", JOptionPane.YES_NO_OPTION);
-
-            switch (option) {
-                case 0://Si
-                    eliminarInventario();
-                    break;
-                case 1:
-                    visor.clearSelection();
-                    break;
-                default:
-                    visor.clearSelection();
-                    break;
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un Registro para Eliminar");
-        }
-
-
-    }//GEN-LAST:event_Btn_EliminarActionPerformed
 
     private void visorComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_visorComponentRemoved
         // TODO add your handling code here:
@@ -227,63 +199,10 @@ public class InternalVerInventario extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Eliminar;
-    private javax.swing.JButton jButtonActualizar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JLabel jLabel1;
     public static javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JTable visor;
     // End of variables declaration//GEN-END:variables
 
-    public boolean eliminarInventario() {
-        int selectedRowIndex = visor.getSelectedRow();
-        Inventario inventario = new Inventario();
-        Ctrl_Inventario controlInventario = new Ctrl_Inventario();
-
-        // If a row is selected
-        // Get the DefaultTableModel from the JTable
-        DefaultTableModel model = (DefaultTableModel) visor.getModel();
-
-        // Get the ID of the selected book from the first column of the selected row
-        int id;
-        id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
-
-        // Remove the selected row from the JTable
-        model.removeRow(selectedRowIndex);
-
-        // Set the ID of the inventario object
-        inventario.setId_libro(id);
-
-        // Delete the inventario object from the database
-        if (controlInventario.eliminar(inventario, id)) {
-            JOptionPane.showMessageDialog(null, "Error al eliminar");
-        } else {
-            JOptionPane.showMessageDialog(null, "Libro eliminado");
-        }
-
-        return true;
-    }
-
-    public boolean editarId() {
-        Inventario inventario = new Inventario();
-        Ctrl_Inventario controlInventario = new Ctrl_Inventario();
-
-        int selectedRowIndex = visor.getSelectedRow();
-
-        // If a row is selected
-        if (selectedRowIndex != -1) {
-            // Get the DefaultTableModel from the JTable
-            DefaultTableModel model = (DefaultTableModel) visor.getModel();
-
-            // Get the ID of the selected book from the first column of the selected row
-            int id;
-            id = Integer.parseInt(model.getValueAt(selectedRowIndex, 0).toString());
-
-            // Set the ID of the inventario object
-            inventario.setId_libro(id);
-
-        }
-
-        return true;
-    }
 }

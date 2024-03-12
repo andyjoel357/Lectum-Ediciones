@@ -13,6 +13,8 @@ import vista.InternalFrameInventario.InternalAgregarLibros;
 import vista.InternalFrameInventario.InternalVerInventario;
 import vista.InternalFrameInventario.InternalNotaDeEntrega;
 import vista.InternalFrameInventario.InternalNotaDeVenta;
+import vista.InternalFrameInventario.InternalRegistroEntrega;
+import vista.InternalFrameInventario.InternalRegistroVenta;
 import vista.InternalFrameInventario.InternalVerUsuarios;
 
 public class FrmMenu extends javax.swing.JFrame {
@@ -242,13 +244,17 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemAgregarInveActionPerformed
 
     private void jMenuItemVerEnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerEnActionPerformed
-        // TODO add your handling code here:
-
+        InternalRegistroEntrega registroE= new InternalRegistroEntrega();
+        jDesktopPane_menu.add(registroE);
+        registroE.setVisible(true);
 
     }//GEN-LAST:event_jMenuItemVerEnActionPerformed
 
     private void jMenuItemVerVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerVeActionPerformed
-        // TODO add your handling code here:
+        
+  InternalRegistroVenta registroV= new InternalRegistroVenta();
+        jDesktopPane_menu.add(registroV);
+        registroV.setVisible(true);
 
     }//GEN-LAST:event_jMenuItemVerVeActionPerformed
 
