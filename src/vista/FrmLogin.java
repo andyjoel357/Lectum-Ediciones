@@ -3,6 +3,8 @@ package vista;
 import conexion.Conexion;
 import controlador.Ctrl_Usuario;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,6 +25,12 @@ public class FrmLogin extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Login - Lectum Ediciones");
         this.setSize(new Dimension(700, 500));
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/logo.png"));
+        return retValue;
     }
 
     /**
@@ -56,6 +64,7 @@ public class FrmLogin extends javax.swing.JFrame {
         jButton_IniciarSesion1.setText("Iniciar Sesión");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
 
         jPanel3.setBackground(new java.awt.Color(102, 204, 255));
 
@@ -240,7 +249,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void Btn_agregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_agregarUsuarioActionPerformed
-            JPasswordField passwordField = new JPasswordField();
+        JPasswordField passwordField = new JPasswordField();
         Object[] fields = {"Contraseña:", passwordField};
 
         int option = JOptionPane.showConfirmDialog(null, fields, "Ingrese su contraseña", JOptionPane.OK_CANCEL_OPTION);
@@ -272,8 +281,6 @@ public class FrmLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Agregar Usuario Cancelado");
         }
 
-
-        
 
     }//GEN-LAST:event_Btn_agregarUsuarioActionPerformed
 

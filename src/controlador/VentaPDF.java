@@ -91,7 +91,7 @@ public class VentaPDF {
             Paragraph fechas = new Paragraph();
             Font negr = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLUE);
             fechas.add(Chunk.NEWLINE);//agregar neuva linea
-            fechas.add("FACTURA: "+numeroF + "\nFecha: " + fecha + "\n\n");
+            fechas.add("Nota de Venta: "+numeroF + "\nFecha: " + fecha + "\n\n");
 
             PdfPTable Encabezado = new PdfPTable(4);
 

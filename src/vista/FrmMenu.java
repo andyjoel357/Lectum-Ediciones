@@ -2,6 +2,8 @@ package vista;
 
 import conexion.Conexion;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +28,7 @@ public class FrmMenu extends javax.swing.JFrame {
         this.setSize(new Dimension(1200, 700));
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
-        this.setTitle("Inventario");
+        this.setTitle("Menu - Lectum Ediciones");
 
 //        ImageIcon icon = new ImageIcon("src/img/verinventario.png");
 //        jMenuItemVerEn.setIcon(icon);
@@ -40,6 +42,12 @@ public class FrmMenu extends javax.swing.JFrame {
         this.jDesktopPane_menu.setBounds(0, 0, ancho, (alto - 110));
         this.add(jDesktopPane_menu);
 
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/logo.png"));
+        return retValue;
     }
 
     /**
@@ -70,6 +78,7 @@ public class FrmMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 255));
         setForeground(new java.awt.Color(242, 242, 242));
+        setIconImage(getIconImage());
 
         jMenuInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Inventario2.png"))); // NOI18N
         jMenuInventario.setText("Inventario");

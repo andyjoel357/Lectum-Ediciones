@@ -1,6 +1,8 @@
 package vista;
 
 import controlador.Ctrl_Usuario;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
@@ -16,7 +18,14 @@ public class AgregarUsuario extends javax.swing.JFrame {
     public AgregarUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        this.setTitle("Usuarios - Lectum Ediciones");
+       
+    }
+    
+     @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/logo.png"));
+        return retValue;
     }
 
     /**
