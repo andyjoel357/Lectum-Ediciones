@@ -24,6 +24,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+          </Group>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -36,12 +41,15 @@
                       <Component id="jButtonEditar" min="-2" pref="111" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="285" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jTextBuscar" min="-2" pref="116" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="BuscarID" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="Filtro" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,7 +59,13 @@
               <Component id="jLabel1" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="300" max="-2" attributes="0"/>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="BuscarID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Filtro" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jButtonEditar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
@@ -148,6 +162,35 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Filtro">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="8">
+            <StringItem index="0" value="Filtro"/>
+            <StringItem index="1" value="Id"/>
+            <StringItem index="2" value="Institucion"/>
+            <StringItem index="3" value="Cliente"/>
+            <StringItem index="4" value="Fecha"/>
+            <StringItem index="5" value="Direccion"/>
+            <StringItem index="6" value="Ruc / Ci"/>
+            <StringItem index="7" value="Telefono"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="BuscarID">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscarIDActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextBuscar">
     </Component>
   </SubComponents>
 </Form>

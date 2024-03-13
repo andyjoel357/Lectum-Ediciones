@@ -16,7 +16,6 @@ import modelo.DetalleCabecera;
 import modelo.DetalleVenta;
 import java.sql.PreparedStatement;
 
-
 /**
  *
  * @author este1
@@ -149,6 +148,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        Filtro = new javax.swing.JComboBox<>();
         jLabel_wallpaper = new javax.swing.JLabel();
 
         setClosable(true);
@@ -160,7 +160,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         jLabel9.setText("VENTA AL POR MAYOR Y MENOR DE LIBROS");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
-        getContentPane().add(jTextBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 120, -1));
+        getContentPane().add(jTextBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 120, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -172,7 +172,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("Cantidad:");
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 260, 80, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 80, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -202,7 +202,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logo_Pequeño.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -20, 180, 140));
-        getContentPane().add(jTextCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 120, -1));
+        getContentPane().add(jTextCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 70, -1));
 
         jComboBoxLibro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxLibro.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +210,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                 jComboBoxLibroActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 260, 120, -1));
+        getContentPane().add(jComboBoxLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 120, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -278,7 +278,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("Libro:");
         jLabel19.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setText("QUITO - ECUADOR");
@@ -300,7 +300,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                 jButtonBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, -1, -1));
+        getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 102));
         jButton4.setText("Añadir Producto");
@@ -309,7 +309,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(635, 260, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -362,8 +362,16 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 700, 150));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 880, -1));
 
+        Filtro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtro", "Id", "Titulo", "Autor", "Codigo" }));
+        Filtro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FiltroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Filtro, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, -1, -1));
+
         jLabel_wallpaper.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 820, 670));
+        getContentPane().add(jLabel_wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 820, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -475,27 +483,44 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
 
         String pBuscar = jTextBuscar.getText().trim();
         Connection cn = conexion.Conexion.conectar();
-        String sql = "select titulo from lista_libros where titulo = '" + pBuscar + "'";
+        String sql = "";
         Statement st;
+        
+            if (!Filtro.getSelectedItem().equals("Filtro")) {
+                if (Filtro.getSelectedItem().equals("Id")) {
+                    sql = "select * from lista_libros where id_libro = '" + pBuscar + "'";
+                } else if (Filtro.getSelectedItem().equals("Titulo")) {
+                    sql = "select * from lista_libros where titulo = '" + pBuscar + "'";
+                } else if (Filtro.getSelectedItem().equals("Autor")) {
+                    sql = "select * from lista_libros where autor = '" + pBuscar + "'";
+                } else if (Filtro.getSelectedItem().equals("Codigo")) {
+                    sql = "select * from lista_libros where codigo = '" + pBuscar + "'";
+                }
 
-        try {
-            st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            if (rs.next()) {
-                jComboBoxLibro.setSelectedItem(rs.getString("titulo"));
+                try {
+                    st = cn.createStatement();
+                    ResultSet rs = st.executeQuery(sql);
+                    if (rs.next()) {
+                        jComboBoxLibro.setSelectedItem(rs.getString("titulo"));
 
+                    } else {
+
+                        jComboBoxLibro.setSelectedItem("Seleccione Libro:");
+                        JOptionPane.showMessageDialog(null, "Libro no Encontrado");
+
+                    }
+                    jTextBuscar.setText("");
+                    cn.close();
+
+                } catch (SQLException e) {
+                    System.out.println("Error al Buscar el Libro" + e);
+                }
             } else {
-
-                jComboBoxLibro.setSelectedItem("Seleccione Libro:");
-                JOptionPane.showMessageDialog(null, "Titulo no encontrado");
+                JOptionPane.showMessageDialog(null, "Seleccione un Filtro para la Busqueda");
 
             }
-            jTextBuscar.setText("");
-            cn.close();
 
-        } catch (SQLException e) {
-            System.out.println("Error al buscar el titulo" + e);
-        }
+       
 
 
     }//GEN-LAST:event_jButtonBuscarActionPerformed
@@ -611,8 +636,13 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jTableLibrosMouseClicked
 
+    private void FiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FiltroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Filtro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -665,11 +695,11 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
         if (selectedRowIndex != -1) {
             String titulo = jComboBoxLibro.getSelectedItem().toString();
             int cant = Integer.parseInt(jTextCantidad.getText());
-            
+
             if (cant <= stock) {
                 idArray = (int) jTableLibros.getValueAt(selectedRowIndex, 0);
                 int option = JOptionPane.showConfirmDialog(null, "Esta Seguro de Editar este Libro?", "!ADVERTENCIA!", JOptionPane.YES_NO_OPTION);
-                
+
                 switch (option) {
                     case 0://Si
                         listaLibros.get(idArray - 1).setTitulo(titulo);
@@ -738,7 +768,7 @@ public class InternalNotaDeVenta extends javax.swing.JInternalFrame {
             ResultSet rs = st.executeQuery(sql);
             jComboBoxLibro.removeAllItems();
             jComboBoxLibro.addItem("Seleccione Libro:");
-            
+
             while (rs.next()) {
                 jComboBoxLibro.addItem(rs.getString("titulo"));
             }

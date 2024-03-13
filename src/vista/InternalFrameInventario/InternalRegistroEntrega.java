@@ -84,6 +84,9 @@ public class InternalRegistroEntrega extends javax.swing.JInternalFrame {
         visor = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButtonEditar = new javax.swing.JButton();
+        Filtro = new javax.swing.JComboBox<>();
+        BuscarID = new javax.swing.JButton();
+        jTextBuscar = new javax.swing.JTextField();
 
         setClosable(true);
         setMaximizable(true);
@@ -129,10 +132,23 @@ public class InternalRegistroEntrega extends javax.swing.JInternalFrame {
             }
         });
 
+        Filtro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtro", "Id", "Institucion", "Cliente", "Fecha", "Direccion", "Ruc / Ci", "Telefono" }));
+
+        BuscarID.setText("Buscar");
+        BuscarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(100, 100, 100))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,11 +158,14 @@ public class InternalRegistroEntrega extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(285, 285, 285))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(100, 100, 100))
+                        .addGap(285, 285, 285))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BuscarID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Filtro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +173,12 @@ public class InternalRegistroEntrega extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BuscarID)
+                    .addComponent(jTextBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Filtro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonEditar)
                 .addGap(16, 16, 16))
         );
@@ -200,11 +224,66 @@ public class InternalRegistroEntrega extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_visorComponentRemoved
 
+    private void BuscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarIDActionPerformed
+        String pBuscar = jTextBuscar.getText().trim();
+        Connection cn = conexion.Conexion.conectar();
+        Statement st;
+        String sql = "";
+
+        if (Filtro.getSelectedItem().equals("Id")) {
+            sql = "select * from cabeceraEntrega where id_detalleCabecera = '" + pBuscar + "'";
+        } else if (Filtro.getSelectedItem().equals("Institucion")) {
+            sql = "select * from cabeceraEntrega where institucion = '" + pBuscar + "'";
+        } else if (Filtro.getSelectedItem().equals("Cliente")) {
+            sql = "select * from cabeceraEntrega where cliente = '" + pBuscar + "'";
+        } else if (Filtro.getSelectedItem().equals("Fecha")) {
+            sql = "select * from cabeceraEntrega where fecha = '" + pBuscar + "'";
+        } else if (Filtro.getSelectedItem().equals("Direccion")) {
+            sql = "select * from cabeceraEntrega where direccion = '" + pBuscar + "'";
+        } else if (Filtro.getSelectedItem().equals("Ruc / Ci")) {
+            sql = "select * from cabeceraEntrega where ruc_ci = '" + pBuscar + "'";
+        } else if (Filtro.getSelectedItem().equals("Telefono")) {
+            sql = "select * from cabeceraEntrega where telefono = '" + pBuscar + "'";
+        }
+
+       
+            if(!Filtro.getSelectedItem().equals("Filtro")){
+                try {
+                    st = cn.createStatement();
+                    ResultSet rs = st.executeQuery(sql);
+                    if (rs.next()) {
+                        int id = rs.getInt("id_detalleCabecera") - 1;
+
+                        visor.setRowSelectionInterval(id, id);
+                        visor.scrollRectToVisible(visor.getCellRect(id, 0, true));
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Nota de Entrega no Encontrada");
+
+                    }
+                    jTextBuscar.setText("");
+                    cn.close();
+
+                } catch (SQLException e) {
+                    System.out.println("Error al Buscar Nota de Entrega" + e);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Seleccione un Filtro para la Busqueda");
+
+            }
+
+       
+    }//GEN-LAST:event_BuscarIDActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BuscarID;
+    private javax.swing.JComboBox<String> Filtro;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JLabel jLabel1;
     public static javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextBuscar;
     public static javax.swing.JTable visor;
     // End of variables declaration//GEN-END:variables
 

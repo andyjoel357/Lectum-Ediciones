@@ -49,7 +49,7 @@
     <Component class="javax.swing.JTextField" name="jTextBuscar">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="210" y="260" width="120" height="-1"/>
+          <AbsoluteConstraints x="200" y="260" width="120" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -79,7 +79,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="425" y="260" width="80" height="-1"/>
+          <AbsoluteConstraints x="490" y="260" width="80" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -158,7 +158,7 @@
     <Component class="javax.swing.JTextField" name="jTextCantidad">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="510" y="260" width="120" height="-1"/>
+          <AbsoluteConstraints x="570" y="260" width="70" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -181,7 +181,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="85" y="260" width="120" height="-1"/>
+          <AbsoluteConstraints x="70" y="260" width="120" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -366,7 +366,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="40" y="260" width="-1" height="-1"/>
+          <AbsoluteConstraints x="30" y="260" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -413,7 +413,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="340" y="260" width="-1" height="-1"/>
+          <AbsoluteConstraints x="330" y="260" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -429,7 +429,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="635" y="260" width="-1" height="-1"/>
+          <AbsoluteConstraints x="650" y="260" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -547,6 +547,30 @@
         </Constraint>
       </Constraints>
     </Component>
+    <Component class="javax.swing.JComboBox" name="Filtro">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="5">
+            <StringItem index="0" value="Filtro"/>
+            <StringItem index="1" value="Id"/>
+            <StringItem index="2" value="Titulo"/>
+            <StringItem index="3" value="Autor"/>
+            <StringItem index="4" value="Codigo"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FiltroActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="410" y="260" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
     <Component class="javax.swing.JLabel" name="jLabel_wallpaper">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -555,7 +579,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="30" width="820" height="670"/>
+          <AbsoluteConstraints x="0" y="0" width="820" height="670"/>
         </Constraint>
       </Constraints>
     </Component>
